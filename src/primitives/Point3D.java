@@ -6,6 +6,7 @@ package primitives;
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 // the fish are wrong
+    //we were here before
 public class Point3D {
     /**
      * Coordinate x
