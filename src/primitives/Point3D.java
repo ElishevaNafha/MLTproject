@@ -5,7 +5,7 @@ package primitives;
  * 3-Dimensional coordinate system.
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-
+// the fish are wrong
 public class Point3D {
     /**
      * Coordinate x
