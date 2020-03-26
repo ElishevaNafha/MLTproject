@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86602107-3fdc-4a65-acb2-30b80ed33ae1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/primitives/Point3D.java" afterPath="$PROJECT_DIR$/src/primitives/Point3D.java" />
     </list>
@@ -22,7 +23,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="17">
               <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -34,19 +35,72 @@
       <file leaf-file-name="Coordinate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/primitives/Coordinate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
+            <state relative-caret-position="697">
+              <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Point3D.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vector.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/primitives/Vector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="143" column="15" lean-forward="false" selection-start-line="143" selection-start-column="15" selection-end-line="143" selection-end-column="15" />
+              <folding>
+                <element signature="docComment;class#Vector#0" expanded="false" />
+                <element signature="docComment;field#_endpoint#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#Vector#0;class#Vector#0" expanded="false" />
+                <element signature="method#Vector#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#Vector#1;class#Vector#0" expanded="false" />
+                <element signature="method#Vector#1;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#Vector#2;class#Vector#0" expanded="false" />
+                <element signature="method#Vector#2;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#Vector#3;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#getEndpoint#0;class#Vector#0" expanded="false" />
+                <element signature="method#equals#0;class#Vector#0" expanded="false" />
+                <element signature="e#2751#2752#0" expanded="true" />
+                <element signature="e#2794#2795#0" expanded="true" />
+                <element signature="docComment;method#subtract#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#add#0;class#Vector#0" expanded="false" />
+                <element signature="method#add#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#scale#0;class#Vector#0" expanded="false" />
+                <element signature="method#scale#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#dotProduct#0;class#Vector#0" expanded="false" />
+                <element signature="method#dotProduct#0;class#Vector#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Point3D.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/primitives/Point3D.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="307">
+              <caret line="116" column="33" lean-forward="false" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="33" />
+              <folding>
+                <element signature="docComment;field#_x#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;field#_y#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;field#_z#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;field#ZERO#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#Point3D#0;class#Point3D#0" expanded="false" />
+                <element signature="method#Point3D#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#Point3D#1;class#Point3D#0" expanded="false" />
+                <element signature="method#Point3D#1;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#Point3D#2;class#Point3D#0" expanded="false" />
+                <element signature="method#Point3D#2;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#getX#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#getY#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#getZ#0;class#Point3D#0" expanded="false" />
+                <element signature="method#equals#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#subtract#0;class#Point3D#0" expanded="false" />
+                <element signature="method#subtract#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#add#0;class#Point3D#0" expanded="false" />
+                <element signature="method#add#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#distanceSquared#0;class#Point3D#0" expanded="false" />
+                <element signature="method#distanceSquared#0;class#Point3D#0" expanded="false" />
+                <element signature="docComment;method#distance#0;class#Point3D#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,7 +118,7 @@
       <file leaf-file-name="Polygon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/geometries/Polygon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="548">
               <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
               <folding />
             </state>
@@ -93,6 +147,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/geometries/Polygon.java" />
         <option value="$PROJECT_DIR$/src/primitives/Point3D.java" />
+        <option value="$PROJECT_DIR$/src/primitives/Vector.java" />
       </list>
     </option>
   </component>
@@ -630,7 +685,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="docComment;field#_x#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_y#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_z#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#ZERO#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getX#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getY#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getZ#0;class#Point3D#0" expanded="false" />
+            <element signature="method#equals#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distance#0;class#Point3D#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -672,7 +749,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="docComment;field#_x#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_y#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_z#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#ZERO#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getX#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getY#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getZ#0;class#Point3D#0" expanded="false" />
+            <element signature="method#equals#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distance#0;class#Point3D#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -730,7 +829,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="docComment;field#_x#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_y#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_z#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#ZERO#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getX#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getY#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getZ#0;class#Point3D#0" expanded="false" />
+            <element signature="method#equals#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distance#0;class#Point3D#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -742,27 +873,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/primitives/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="36" column="4" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/geometries/Polygon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
+        <state relative-caret-position="548">
           <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
           <folding />
         </state>
@@ -770,9 +883,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/primitives/Point3D.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        <state relative-caret-position="307">
+          <caret line="116" column="33" lean-forward="false" selection-start-line="116" selection-start-column="33" selection-end-line="116" selection-end-column="33" />
+          <folding>
+            <element signature="docComment;field#_x#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_y#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#_z#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;field#ZERO#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#1;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="method#Point3D#2;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getX#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getY#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#getZ#0;class#Point3D#0" expanded="false" />
+            <element signature="method#equals#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="method#subtract#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="method#add#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="method#distanceSquared#0;class#Point3D#0" expanded="false" />
+            <element signature="docComment;method#distance#0;class#Point3D#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/primitives/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/primitives/Vector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="143" column="15" lean-forward="false" selection-start-line="143" selection-start-column="15" selection-end-line="143" selection-end-column="15" />
+          <folding>
+            <element signature="docComment;class#Vector#0" expanded="false" />
+            <element signature="docComment;field#_endpoint#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#Vector#0;class#Vector#0" expanded="false" />
+            <element signature="method#Vector#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#Vector#1;class#Vector#0" expanded="false" />
+            <element signature="method#Vector#1;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#Vector#2;class#Vector#0" expanded="false" />
+            <element signature="method#Vector#2;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#Vector#3;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#getEndpoint#0;class#Vector#0" expanded="false" />
+            <element signature="method#equals#0;class#Vector#0" expanded="false" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#2794#2795#0" expanded="true" />
+            <element signature="docComment;method#subtract#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#add#0;class#Vector#0" expanded="false" />
+            <element signature="method#add#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#scale#0;class#Vector#0" expanded="false" />
+            <element signature="method#scale#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#dotProduct#0;class#Vector#0" expanded="false" />
+            <element signature="method#dotProduct#0;class#Vector#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
