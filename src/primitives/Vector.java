@@ -140,7 +140,59 @@ public class Vector {
         return x + y + z;
     }
 
+    /**
+     * calculates cross product between two vectors
+     *
+     * @param v second vector
+     * @return cross product result
+     */
     public Vector crossProduct(Vector v){
-        //TO DO
+        double x  = (_endpoint.getY().get() * v._endpoint.getZ().get()) - (_endpoint.getZ().get() * v._endpoint.getY().get());
+        double y  = (_endpoint.getZ().get() * v._endpoint.getX().get()) - (_endpoint.getX().get() * v._endpoint.getZ().get());
+        double z  = (_endpoint.getX().get() * v._endpoint.getY().get()) - (_endpoint.getY().get() * v._endpoint.getX().get());
+        return new Vector(x, y, z);
+    }
+
+    /**
+     * calculates vector's squared length
+     *
+     * @return vector's squared length
+     */
+    public double lengthSquared(){
+        return dotProduct(this);
+    }
+
+    /**
+     * calculates vector's length
+     *
+     * @return vector's length
+     */
+    public double length(){
+        return Math.sqrt(lengthSquared());
+    }
+
+    /**
+     * normalizes the vector
+     *
+     * @return this vector after normalization
+     */
+    public Vector normalize(){
+        double length = length();
+        double x = _endpoint.getX().get() / length;
+        double y = _endpoint.getY().get() / length;
+        double z = _endpoint.getZ().get() / length;
+        _endpoint = new Point3D(x, y, z);
+        return this;
+    }
+
+    /**
+     * calculates the normalized vector
+     *
+     * @return normalized vector
+     */
+    public Vector normalized(){
+        Vector v = new Vector(this);
+        v.normalize();
+        return v;
     }
 }

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86602107-3fdc-4a65-acb2-30b80ed33ae1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/primitives/Ray.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/primitives/Point3D.java" afterPath="$PROJECT_DIR$/src/primitives/Point3D.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/primitives/Vector.java" afterPath="$PROJECT_DIR$/src/primitives/Vector.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vector.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/primitives/Vector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="143" column="15" lean-forward="false" selection-start-line="143" selection-start-column="15" selection-end-line="143" selection-end-column="15" />
+            <state relative-caret-position="444">
+              <caret line="94" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="94" selection-end-column="5" />
               <folding>
                 <element signature="docComment;class#Vector#0" expanded="false" />
                 <element signature="docComment;field#_endpoint#0;class#Vector#0" expanded="false" />
@@ -68,6 +68,34 @@
                 <element signature="method#scale#0;class#Vector#0" expanded="false" />
                 <element signature="docComment;method#dotProduct#0;class#Vector#0" expanded="false" />
                 <element signature="method#dotProduct#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#crossProduct#0;class#Vector#0" expanded="false" />
+                <element signature="method#crossProduct#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#lengthSquared#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#length#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#normalize#0;class#Vector#0" expanded="false" />
+                <element signature="method#normalize#0;class#Vector#0" expanded="false" />
+                <element signature="docComment;method#normalized#0;class#Vector#0" expanded="false" />
+                <element signature="method#normalized#0;class#Vector#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ray.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/primitives/Ray.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="44" column="4" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+              <folding>
+                <element signature="docComment;field#_startpoint#0;class#Ray#0" expanded="false" />
+                <element signature="docComment;field#_vector#0;class#Ray#0" expanded="false" />
+                <element signature="docComment;method#Ray#0;class#Ray#0" expanded="false" />
+                <element signature="method#Ray#0;class#Ray#0" expanded="false" />
+                <element signature="docComment;method#Ray#1;class#Ray#0" expanded="false" />
+                <element signature="method#Ray#1;class#Ray#0" expanded="false" />
+                <element signature="docComment;method#getStartPoint#0;class#Ray#0" expanded="false" />
+                <element signature="docComment;method#getVector#0;class#Ray#0" expanded="false" />
+                <element signature="method#equals#0;class#Ray#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -148,6 +176,7 @@
         <option value="$PROJECT_DIR$/src/geometries/Polygon.java" />
         <option value="$PROJECT_DIR$/src/primitives/Point3D.java" />
         <option value="$PROJECT_DIR$/src/primitives/Vector.java" />
+        <option value="$PROJECT_DIR$/src/primitives/Ray.java" />
       </list>
     </option>
   </component>
@@ -655,7 +684,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -881,6 +912,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/primitives/Coordinate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/primitives/Point3D.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
@@ -911,18 +950,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/primitives/Coordinate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="45" column="45" lean-forward="true" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/primitives/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="143" column="15" lean-forward="false" selection-start-line="143" selection-start-column="15" selection-end-line="143" selection-end-column="15" />
+        <state relative-caret-position="444">
+          <caret line="94" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="94" selection-end-column="5" />
           <folding>
             <element signature="docComment;class#Vector#0" expanded="false" />
             <element signature="docComment;field#_endpoint#0;class#Vector#0" expanded="false" />
@@ -944,6 +975,32 @@
             <element signature="method#scale#0;class#Vector#0" expanded="false" />
             <element signature="docComment;method#dotProduct#0;class#Vector#0" expanded="false" />
             <element signature="method#dotProduct#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#crossProduct#0;class#Vector#0" expanded="false" />
+            <element signature="method#crossProduct#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#lengthSquared#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#length#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#normalize#0;class#Vector#0" expanded="false" />
+            <element signature="method#normalize#0;class#Vector#0" expanded="false" />
+            <element signature="docComment;method#normalized#0;class#Vector#0" expanded="false" />
+            <element signature="method#normalized#0;class#Vector#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/primitives/Ray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="44" column="4" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding>
+            <element signature="docComment;field#_startpoint#0;class#Ray#0" expanded="false" />
+            <element signature="docComment;field#_vector#0;class#Ray#0" expanded="false" />
+            <element signature="docComment;method#Ray#0;class#Ray#0" expanded="false" />
+            <element signature="method#Ray#0;class#Ray#0" expanded="false" />
+            <element signature="docComment;method#Ray#1;class#Ray#0" expanded="false" />
+            <element signature="method#Ray#1;class#Ray#0" expanded="false" />
+            <element signature="docComment;method#getStartPoint#0;class#Ray#0" expanded="false" />
+            <element signature="docComment;method#getVector#0;class#Ray#0" expanded="false" />
+            <element signature="method#equals#0;class#Ray#0" expanded="false" />
           </folding>
         </state>
       </provider>
