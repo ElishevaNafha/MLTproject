@@ -45,7 +45,8 @@ public class Polygon implements Geometry {
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-        _vertices = List.of(vertices);
+        for(int i = 0; i < vertices.length; i++)
+            _vertices.add(vertices[i]);
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
