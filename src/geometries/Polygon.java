@@ -81,6 +81,28 @@ public class Polygon implements Geometry {
         }
     }
 
+    //getters
+    /**
+     * getter for the plane in which the polygon lays
+     * @return
+     */
+    public Plane get_plane() {
+        return _plane;
+    }
+    /**
+     * getter for the polygon's vertices
+     * @return
+     */
+    public List<Point3D> get_vertices() {
+        return _vertices;
+    }
+
+    //basic overrides
+    @Override
+    public String toString(){
+         return "Vertices:"+_vertices.toString();
+    }
+
     @Override
     public Vector getNormal(Point3D point) {
         return _plane.getNormal();
