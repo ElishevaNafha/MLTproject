@@ -113,7 +113,7 @@ public class Vector {
      * @return the vector created from the sum of the two vectors
      */ //what about zero vector?
     public Vector add(Vector v){
-        Point3D point = _endpoint.add(v._endpoint);
+        Point3D point = _endpoint.add(v);
         return new Vector(point);
     }
 

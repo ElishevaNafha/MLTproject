@@ -122,14 +122,14 @@ public class Point3D {
     }
 
     /**
-     * sums up two points, creating a third point
+     * sums up a point and a vector, creating a new point
      *
-     * @param p second point
-     * @return sum of this point and p
+     * @param v vector
+     * @return sum of this point and v
      */
-    public Point3D add(Point3D p){
+    public Point3D add(Vector v){
         //create Point3D from addition
-        return new Point3D(_x.get() + p._x.get(), _y.get() + p._y.get(), _z.get() + p._z.get());
+        return new Point3D(_x.get() + v.getEndpoint().getX().get(), _y.get() + v.getEndpoint().getY().get(), _z.get() + v.getEndpoint().getZ().get());
     }
 
     /**
