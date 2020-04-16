@@ -7,6 +7,8 @@ package primitives;
  */
 
 public class Point3D {
+
+    //fields
     /**
      * Coordinate x
      */
@@ -21,6 +23,12 @@ public class Point3D {
     private Coordinate _z;
 
     /**
+     * Zero point, static and constant
+     */
+    static final public Point3D ZERO = new Point3D(0,0,0);
+
+    //constructors
+    /**
      * Point3D constructor receiving 3 coordinate values
      *
      * @param x coordinate _x value
@@ -28,9 +36,22 @@ public class Point3D {
      * @param z coordinate _z value
      */
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        _x = x;
-        _y = y;
-        _z = z;
+        _x = new Coordinate(x);
+        _y = new Coordinate(y);
+        _z = new Coordinate(z);
+    }
+
+    /**
+     * Point3D constructor receiving 3 values for coordinates
+     *
+     * @param x coordinate _x value
+     * @param y coordinate _y value
+     * @param z coordinate _z value
+     */
+    public Point3D(double x, double y, double z) {
+        _x = new Coordinate(x);
+        _y = new Coordinate(y);
+        _z = new Coordinate(z);
     }
 
     /**
@@ -44,6 +65,7 @@ public class Point3D {
         _z = other._z;
     }
 
+    //getters
     /**
      * Point3D x value getter
      *
@@ -52,6 +74,7 @@ public class Point3D {
     public Coordinate getX() {
         return _x;
     }
+
     /**
      * Point3D y value getter
      *
@@ -60,6 +83,7 @@ public class Point3D {
     public Coordinate getY() {
         return _y;
     }
+
     /**
      * Point3D z value getter
      *
@@ -69,6 +93,7 @@ public class Point3D {
         return _z;
     }
 
+    //basic overrides
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -78,4 +103,54 @@ public class Point3D {
         return _x.equals(oth._x) && _y.equals(oth._y) && _z.equals(oth._z);
     }
 
+    @Override
+    public String toString() {
+        return "(" + _x.toString() + "," + _y.toString() + "," + _z.toString() + ")";
+    }
+
+    //methods
+    /**
+     * subtracts two point as two vectors, creating a vector between them
+     *
+     * @param p second point
+     * @return vector from this point to p
+     */ //what about zero vector?
+    public Vector subtract(Point3D p){
+        //create Point3D from subtraction
+        Point3D endpoint = new Point3D(_x.get() - p._x.get(), _y.get() - p._y.get(), _z.get() - p._z.get());
+        return new Vector(endpoint);
+    }
+
+    /**
+     * sums up two points, creating a third point
+     *
+     * @param v vector
+     * @return sum of this point and v
+     */
+    public Point3D add(Vector v){
+        //create Point3D from addition
+        return new Point3D(_x.get() + v.getEndpoint().getX().get(), _y.get() + v.getEndpoint().getY().get(), _z.get() + v.getEndpoint().getZ().get());
+    }
+
+    /**
+     * calculates squared distance between two points
+     *
+     * @param p second point
+     * @return squared distance between this point and p
+     */
+    public double distanceSquared(Point3D p){
+        return ((_x.get() - p._x.get()) * (_x.get() - p._x.get())) +
+                ((_y.get() - p._y.get()) * (_y.get() - p._y.get())) +
+                ((_z.get() - p._z.get()) * (_z.get() - p._z.get()));
+    }
+
+    /**
+     * calculates distance between two points
+     *
+     * @param p second point
+     * @return distance between this point and p
+     */
+    public double distance(Point3D p){
+        return Math.sqrt(distanceSquared(p));
+    }
 }

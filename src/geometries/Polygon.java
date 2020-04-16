@@ -45,7 +45,8 @@ public class Polygon implements Geometry {
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-        _vertices = List.of(vertices);
+        for(int i = 0; i < vertices.length; i++)
+            _vertices.add(vertices[i]);
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
@@ -79,6 +80,28 @@ public class Polygon implements Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+    }
+
+    //getters
+    /**
+     * getter for the plane in which the polygon lays
+     * @return
+     */
+    public Plane get_plane() {
+        return _plane;
+    }
+    /**
+     * getter for the polygon's vertices
+     * @return
+     */
+    public List<Point3D> get_vertices() {
+        return _vertices;
+    }
+
+    //basic overrides
+    @Override
+    public String toString(){
+         return "Vertices:"+_vertices.toString();
     }
 
     @Override
