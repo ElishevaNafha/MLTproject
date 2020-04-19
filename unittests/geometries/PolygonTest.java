@@ -10,7 +10,6 @@ import primitives.*;
 /**
  * Testing Polygons
  * @author Dan
- *
  */
 public class PolygonTest {
 

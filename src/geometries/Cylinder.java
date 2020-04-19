@@ -12,9 +12,9 @@ public class Cylinder extends Tube{
 
     /**
      * Cylinder constructor
-     * @param radius
-     * @param axisRay
-     * @param height
+     * @param radius is cylinder's radius
+     * @param axisRay is cylinder's axis direction and a point on the axis
+     * @param height is cylinder's height
      */
     public Cylinder(double radius, Ray axisRay, double height){
         super(radius, axisRay);
@@ -38,6 +38,20 @@ public class Cylinder extends Tube{
     //functions
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        Vector v = _axisRay.getVector().normalized();
+        Point3D p0 = _axisRay.getStartPoint();
+
+        //check whether point is on base
+        Vector u = point3D.subtract(p0);
+        if ((v.dotProduct(u) == 0) && (u.length() <= _radius))
+            return v.scale(-1);
+
+        //check whether point is on top
+        u = point3D.subtract(p0.add(v.scale(_height)));
+        if ((v.dotProduct(u) == 0) && (u.length() <= _radius))
+            return v;
+
+        //else, the point is on the middle
+        return super.getNormal(point3D);
     }
 }

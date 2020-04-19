@@ -11,8 +11,8 @@ public class Tube extends RadialGeometry {
 
     /**
      * Tube constructor
-     * @param radius
-     * @param axisRay
+     * @param radius is tube's radius
+     * @param axisRay is tube's direction and a point on the axis
      */
     public Tube(double radius, Ray axisRay){
         super(radius);
@@ -36,6 +36,12 @@ public class Tube extends RadialGeometry {
     //functions
     @Override
     public Vector getNormal(Point3D point3D) {
-        return null;
+        Vector v = _axisRay.getVector().normalized();
+        Point3D p0 = _axisRay.getStartPoint();
+        double t = v.dotProduct(point3D.subtract(p0));
+        Point3D o = p0;
+        if (t != 0)
+             o = o.add(v.scale(t));
+        return point3D.subtract(o).normalized();
     }
 }

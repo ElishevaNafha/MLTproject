@@ -1,5 +1,8 @@
 package geometries;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -7,7 +10,7 @@ import static primitives.Util.*;
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
- * 
+ *
  * @author Dan
  */
 public class Polygon implements Geometry {
@@ -23,7 +26,7 @@ public class Polygon implements Geometry {
     /**
      * Polygon constructor based on vertices list. The list must be ordered by edge
      * path. The polygon must be convex.
-     * 
+     *
      * @param vertices list of vertices according to their order by edge path
      * @throws IllegalArgumentException in any case of illegal combination of
      *                                  vertices:
@@ -45,8 +48,8 @@ public class Polygon implements Geometry {
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
-        for(int i = 0; i < vertices.length; i++)
-            _vertices.add(vertices[i]);
+        _vertices = new LinkedList<>();
+        Collections.addAll(_vertices, vertices);
         // Generate the plane according to the first three vertices and associate the
         // polygon with this plane.
         // The plane holds the invariant normal (orthogonal unit) vector to the polygon
@@ -85,14 +88,14 @@ public class Polygon implements Geometry {
     //getters
     /**
      * getter for the plane in which the polygon lays
-     * @return
+     * @return plane
      */
     public Plane get_plane() {
         return _plane;
     }
     /**
      * getter for the polygon's vertices
-     * @return
+     * @return polygon's vertices
      */
     public List<Point3D> get_vertices() {
         return _vertices;
@@ -101,7 +104,7 @@ public class Polygon implements Geometry {
     //basic overrides
     @Override
     public String toString(){
-         return "Vertices:"+_vertices.toString();
+        return "Vertices:"+_vertices.toString();
     }
 
     @Override

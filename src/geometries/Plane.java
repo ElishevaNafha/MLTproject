@@ -26,8 +26,11 @@ public class Plane implements Geometry {
      */
     public Plane(Point3D point1, Point3D point2, Point3D point3){
         _point = point1;
-        //will be implemented in the next part of the project
-        _normal = null;
+
+        //calculate normal
+        Vector v1 = point2.subtract(point1);
+        Vector v2 = point3.subtract(point1);
+        _normal = v1.crossProduct(v2).normalize();
     }
     /**
      * Plane constructor receiving a point and the normal vector to the plane
@@ -37,7 +40,7 @@ public class Plane implements Geometry {
      */
     public Plane(Point3D point, Vector normal){
         _point = point;
-        _normal = normal;
+        _normal = normal.normalized();
     }
 
     //getters
