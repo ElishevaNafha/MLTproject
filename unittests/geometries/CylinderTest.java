@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  * Testing Cylinder
- * @author Elisheva Nafha and Eliana Rabinowitz
+ * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class CylinderTest {
 
