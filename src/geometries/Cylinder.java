@@ -13,7 +13,7 @@ public class Cylinder extends Tube{
     /**
      * Cylinder constructor
      * @param radius is cylinder's radius
-     * @param axisRay is cylinder's axis direction and a point on the axis
+     * @param axisRay is cylinder's axis direction and a point on its axis
      * @param height is cylinder's height
      */
     public Cylinder(double radius, Ray axisRay, double height){
