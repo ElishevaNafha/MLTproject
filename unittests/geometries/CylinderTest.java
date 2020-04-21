@@ -26,6 +26,7 @@ public class CylinderTest {
         Vector normal1 = c.getNormal(new Point3D(2,0,3));
         assertEquals("getNormal() wrong normal for a point on the middle", normal1, new Vector(1,0,0));
 //hi
+//hello
         // TC02: Get a normal for a cylinder on the top
         Vector normal2 = c.getNormal(new Point3D(1,1,6));
         assertEquals("getNormal() wrong normal for a point on the top", normal2, new Vector(0,0,1));
