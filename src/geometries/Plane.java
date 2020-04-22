@@ -1,6 +1,8 @@
 package geometries;
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Plane class represents a plane in 3D Cartesian coordinate system
  * @author Eliana Rabinowitz and Elisheva Nafha
@@ -70,4 +72,10 @@ public class Plane implements Geometry {
     public Vector getNormal(Point3D point3D) {
         return _normal;
     }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
+    }
+
 }

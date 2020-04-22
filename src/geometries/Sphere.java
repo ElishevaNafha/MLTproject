@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Sphere class represents a sphere in 3D Cartesian coordinate system
  * @author Eliana Rabinowitz and Elisheva Nafha
@@ -38,5 +40,10 @@ public class Sphere extends RadialGeometry {
     @Override
     public Vector getNormal(Point3D point3D) {
         return point3D.subtract(_center).normalize();
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }
