@@ -1,10 +1,10 @@
 package geometries;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 import primitives.*;
+import primitives.Vector;
+
 import static primitives.Util.*;
 
 /**
@@ -112,8 +112,65 @@ public class Polygon implements Geometry {
         return _plane.getNormal();
     }
 
+
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) { // DOESN'T WORK FOR BOUNDARY CASES
+        //find intersection with plane
+        List<Point3D> intersection = (new Plane(_vertices.get(0), _vertices.get(1), _vertices.get(2))).findIntersections(ray);
+        //if ray is parallel to plane, return null
+        if (intersection == null)
+            return null;
+
+        //create list for V1, v2, ..., Vn
+        List<Vector> V = new ArrayList<Vector>();
+
+        //create list for N1, N2, ..., Nn
+        List<Vector> N = new ArrayList<Vector>();
+
+        Point3D p0 = ray.getStartPoint();
+        List<Point3D> p = _vertices;
+        Vector v = ray.getVector();
+        int n = _vertices.size();
+
+        //calculate Vi values
+        for (int i = 0; i < n; i++){
+            V.add(p.get(i).subtract(p0));
+        }
+
+        //calculate Ni values
+        for (int i = 0; i < n - 1; i++){
+            N.add(V.get(i).crossProduct(V.get(i + 1)).normalize());
+        }
+        N.add(V.get(n - 1).crossProduct(V.get(0)).normalize());
+
+        //check Ni's signs
+        boolean sameSign = true;
+        double VN0 = alignZero(v.dotProduct(N.get(0)));
+        if (VN0 == 0) {
+            sameSign = false;
+        }
+        else {
+            boolean positive = VN0 > 0;
+            if (positive) {
+                for (int i = 1; i < n; i++) {
+                    if (alignZero(v.dotProduct(N.get(i))) < 0){
+                        sameSign = false;
+                        break;
+                    }
+                }
+            }
+            else {
+                for (int i = 1; i < n; i++) {
+                    if (alignZero(v.dotProduct(N.get(i))) > 0){
+                        sameSign = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(sameSign)
+            return intersection;
         return null;
     }
 }
