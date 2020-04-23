@@ -2,6 +2,8 @@ package geometries;
 
 import org.junit.Test;
 import primitives.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
 import static org.junit.Assert.*;
@@ -39,14 +41,17 @@ public class PlaneTest {
     public void findIntersections() {
         Plane plane = new Plane(new Point3D(0,0,1), new Point3D(1,0,1), new Point3D(0,1,1));
         Point3D p;
+        List<Point3D> expected;
         List<Point3D> result;
         // ============ Equivalence Partitions Tests ==============
         //Ray is neither orthogonal nor parallel to the plane
         //TC01: Ray intersects the plane
         p = new Point3D(1,0,1);
+        expected = new ArrayList<Point3D>();
+        expected.add(p);
         Ray ray  = new Ray(new Point3D(0,0,2), new Vector(1,0,-1));
         result = plane.findIntersections(ray);
-        assertEquals("Ray intersects the plane", result,p);
+        assertEquals("Ray intersects the plane", result,expected);
 
         //TC02: Ray doesn't intersect the plane
         ray = new Ray(new Point3D(1,0,0), new Vector(1,0,-1));
@@ -68,9 +73,11 @@ public class PlaneTest {
         // **** Group: Ray is orthogonal to plane
         //TC05: Ray starts before plane and crosses it
         p = new Point3D(1,0,1);
+        expected = new ArrayList<Point3D>();
+        expected.add(p);
         ray = new Ray(new Point3D(1,0,2), new Vector(0,0,-1));
         result = plane.findIntersections(ray);
-        assertEquals("Ray starts before plane and intersects it", p, result);
+        assertEquals("Ray starts before plane and intersects it", expected, result);
 
         //TC06: Ray starts at plane
         ray = new Ray(new Point3D(1,0,1), new Vector(0,0,-1));

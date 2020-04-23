@@ -1,8 +1,14 @@
 package geometries;
 
 import primitives.*;
+import primitives.Vector;
+import static java.lang.System.out;
 
+import java.awt.*;
+import java.util.*;
 import java.util.List;
+
+import static primitives.Util.alignZero;
 
 /**
  * Sphere class represents a sphere in 3D Cartesian coordinate system
@@ -43,7 +49,44 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        return null;
+    public List<Point3D> findIntersections(Ray ray)
+        {
+            ArrayList<Point3D> intersections = new ArrayList<>();
+            Point3D p0 = ray.getStartPoint();
+            Point3D p1, p2, a, b;
+            Vector v = ray.getVector();
+            double r = getRadius();
+            Point3D o = getCenter();
+            if(o.equals(p0)) //For some reason you can't have a zero vector so the normal calculation doesn't work when the ray starts in the center
+            {
+                return List.of(p0.add(v.scale(r)));
+            }
+            Vector u = o.subtract(p0);
+            double tm = v.dotProduct(u);
+            double d = Math.sqrt(u.dotProduct(u) - tm*tm);
+            if(d>r)
+                return null;
+            double th = Math.sqrt(r*r-d*d);
+            double t1 = tm+th;
+            double t2 = tm-th;
+            alignZero(t1);
+            alignZero(t2);
+            if(t1>0)
+            {
+                p1 = new Point3D(p0.add(v.scale(t1)));
+                a = new Point3D(p1);
+                if(ray.getVector().dotProduct(a.subtract(o))!=0)
+                 intersections.add(p1);
+            }
+            if((t2>0)&&(t1!=t2))
+            {
+                p2 = new Point3D(p0.add(v.scale(t2)));
+                a = new Point3D(p2);
+                if(ray.getVector().dotProduct(a.subtract(o))!=0)
+                    intersections.add(p2);
+            }
+            if(intersections.isEmpty())
+                return null;
+            return intersections;
+        }
     }
-}
