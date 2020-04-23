@@ -122,10 +122,10 @@ public class Polygon implements Geometry {
             return null;
 
         //create list for V1, v2, ..., Vn
-        List<Vector> V = new ArrayList<Vector>();
+        List<Vector> V = new ArrayList<>();
 
         //create list for N1, N2, ..., Nn
-        List<Vector> N = new ArrayList<Vector>();
+        List<Vector> N = new ArrayList<>();
 
         Point3D p0 = ray.getStartPoint();
         List<Point3D> p = _vertices;
@@ -153,7 +153,7 @@ public class Polygon implements Geometry {
             boolean positive = VN0 > 0;
             if (positive) {
                 for (int i = 1; i < n; i++) {
-                    if (alignZero(v.dotProduct(N.get(i))) < 0){
+                    if (alignZero(v.dotProduct(N.get(i))) <= 0){
                         sameSign = false;
                         break;
                     }
@@ -161,7 +161,7 @@ public class Polygon implements Geometry {
             }
             else {
                 for (int i = 1; i < n; i++) {
-                    if (alignZero(v.dotProduct(N.get(i))) > 0){
+                    if (alignZero(v.dotProduct(N.get(i))) >= 0){
                         sameSign = false;
                         break;
                     }

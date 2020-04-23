@@ -1,5 +1,6 @@
 package geometries;
 import primitives.*;
+import static primitives.Util.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,10 +76,32 @@ public class Plane implements Geometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) { //TEMPORARY, FOR POLYGON'S TEST
-        List<Point3D> l = new ArrayList<Point3D>();
-        l.add(new Point3D(-1,-1,2));
-        return l;
+    public List<Point3D> findIntersections(Ray ray) {
+        //check if ray is parallel to plane
+        if (alignZero(ray.getVector().dotProduct(_normal)) == 0)
+            return null;
+
+        //rename calculation parameters
+        Vector N = _normal;
+        Point3D Q0 = _point;
+        Vector V = ray.getVector();
+        Point3D P0 = ray.getStartPoint();
+
+        //calculate t
+        double t;
+        try
+        { t = alignZero(N.dotProduct(Q0.subtract(P0))) / N.dotProduct(V); }
+        catch (IllegalArgumentException e)
+        { return null; }
+
+        //check if intersection point is on the plane or on the ray's negative side
+        if (t <= 0)
+            return null;
+
+        //return intersection point
+        List<Point3D> intersection = new ArrayList<>();
+        intersection.add(P0.add(V.scale(t)));
+        return intersection;
     }
 
 }
