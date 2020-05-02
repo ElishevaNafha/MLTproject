@@ -30,4 +30,25 @@ public class TubeTest {
         Vector normal2 = t.getNormal(new Point3D(0,0,2));
         assertEquals("getNormal() wrong normal result where t = 0", normal2, new Vector(0,0,1));
     }
+
+    /**
+     * Test method for {@link Tube#findIntersections(Ray)}.
+     */
+    @Test
+    public void findIntersections() {
+        Tube t;
+        Ray r;
+
+        // ============ Equivalence Partitions Tests ==============
+
+        //TC01: No intersections with tube
+
+
+        //TC02: One intersection with tube
+        //TC03: Two intersections with tube
+
+        // =============== Boundary Values Tests ==================
+
+
+    }
 }

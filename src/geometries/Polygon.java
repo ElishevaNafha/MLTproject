@@ -112,7 +112,6 @@ public class Polygon implements Geometry {
         return _plane.getNormal();
     }
 
-
     @Override
     public List<Point3D> findIntersections(Ray ray) { // DOESN'T WORK FOR BOUNDARY CASES
         //find intersection with plane
