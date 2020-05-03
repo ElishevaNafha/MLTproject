@@ -65,7 +65,7 @@ public class Ray {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if (!(obj instanceof Vector)) return false;
+        if (!(obj instanceof Ray)) return false;
         Ray oth = (Ray)obj;
         return _startpoint.equals(oth._startpoint) && _vector.equals(oth._vector);
     }
@@ -73,5 +73,10 @@ public class Ray {
     @Override
     public String toString() {
         return "starts at " + _startpoint.toString() + ", in direction " + _vector.toString();
+    }
+
+    //methods
+    public Point3D getPoint(double t){
+        return _startpoint.add(_vector.scale(t));
     }
 }

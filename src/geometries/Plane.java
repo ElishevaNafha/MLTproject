@@ -101,7 +101,7 @@ public class Plane implements Geometry {
 
         //return intersection point
         List<Point3D> intersection = new ArrayList<>();
-        intersection.add(P0.add(V.scale(t)));
+        intersection.add(ray.getPoint(t));
         return intersection;
     }
 
