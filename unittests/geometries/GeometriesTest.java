@@ -34,18 +34,19 @@ public class GeometriesTest {
         //TC02: No geometry intersects the ray
         sphere = new Sphere(1, new Point3D(3,3,3));
         plane =  new Plane(new Point3D(0,0,2),new Point3D(1,0,2), new Point3D(0,1,2));
-        triangle = new Triangle(new Point3D(50,50,50), new Point3D(45,45,45), new Point3D(40,40,40));
+        triangle = new Triangle(new Point3D(50,50,50), new Point3D(45,40,45), new Point3D(40,40,40));
         geometries = new Geometries();
         geometries.add(sphere);
         geometries.add(plane);
         geometries.add(triangle);
+        result = new ArrayList<>();
         result = geometries.findIntersections(ray);
         assertNull("No geometry intersects with ray", result);
 
         //TC03: One geometry intersects the ray
         sphere = new Sphere(1, new Point3D(3,0,1));
         plane =  new Plane(new Point3D(0,0,2),new Point3D(1,0,2), new Point3D(0,1,2));
-        triangle = new Triangle(new Point3D(50,50,50), new Point3D(45,45,45), new Point3D(40,40,40));
+        triangle = new Triangle(new Point3D(50,50,50), new Point3D(45,40,45), new Point3D(40,40,40));
         geometries = new Geometries();
         geometries.add(sphere);
         geometries.add(plane);

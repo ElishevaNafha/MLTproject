@@ -35,6 +35,7 @@ public class Plane implements Geometry {
         Vector v1 = point2.subtract(point1);
         Vector v2 = point3.subtract(point1);
         _normal = v1.crossProduct(v2).normalize();
+
     }
     /**
      * Plane constructor receiving a point and the normal vector to the plane
