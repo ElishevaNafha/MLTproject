@@ -35,10 +35,18 @@ public class Camera {
     }
 
     /**
+     * getter for the camera's location
+     * @return camera's location
+     */
+    public Point3D getLocation() {
+        return _location;
+    }
+
+    /**
      * getter for the Vto vector - Z axis
      * @return Vto vector
      */
-    public Vector get_Vto() {
+    public Vector getVto() {
         return _Vto;
     }
 
@@ -46,7 +54,7 @@ public class Camera {
      * getter for the Vup vector - Y axis
      * @return Vup vector
      */
-    public Vector get_Vup() {
+    public Vector getVup() {
         return _Vup;
     }
 
@@ -54,7 +62,7 @@ public class Camera {
      * getter for the Vright vector - X axis
      * @return Vright vector
      */
-    public Vector get_Vright() {
+    public Vector getVright() {
         return _Vright;
     }
 

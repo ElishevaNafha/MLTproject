@@ -2,7 +2,7 @@ package geometries;
 
 import primitives.Ray;
 /**
- * RadialGeometry class represnts 3d shapes that are based on a radius
+ * RadialGeometry class represents 3d shapes that are based on a radius
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public abstract class RadialGeometry implements Geometry{

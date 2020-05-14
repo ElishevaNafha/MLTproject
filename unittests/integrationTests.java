@@ -9,7 +9,6 @@ import static org.junit.Assert.fail;
 /**
  * Testing integration of different functions
  * @author Eliana Rabinowitz and Elisheva Nafha
- *
  */
 public class integrationTests {
     /**
@@ -22,6 +21,7 @@ public class integrationTests {
         Sphere sphere;
         Ray ray;
         int result, expected;
+
         //TC01:
         sphere = new Sphere(1, new Point3D(0,0,3));
         expected = 2;

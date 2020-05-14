@@ -154,9 +154,6 @@ public class VectorTest {
 
         // TC01: simple length calculation
         assertTrue(isZero(v.lengthSquared() - 14));
-
-        // =============== Boundary Values Tests ==================
-        // None
     }
 
     /**
@@ -168,9 +165,6 @@ public class VectorTest {
 
         // TC01: Simple vector length calculation
         assertTrue(isZero(new Vector(0, 3, 4).length() - 5));
-
-        // =============== Boundary Values Tests ==================
-        // None
     }
 
     /**

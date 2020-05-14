@@ -57,18 +57,26 @@ public class Sphere extends RadialGeometry {
             Vector v = ray.getVector();
             double r = getRadius();
             Point3D o = getCenter();
+
+            // boundary value - if the ray starts at the center of the sphere, regular calculation doesn't work (see below)
             if(o.equals(p0)) //For some reason you can't have a zero vector so the normal calculation doesn't work when the ray starts in the center
             {
                 return List.of(p0.add(v.scale(r)));
             }
+
             Vector u = o.subtract(p0);
             double tm = v.dotProduct(u);
             double d = Math.sqrt(u.dotProduct(u) - tm*tm);
+
+            //if no intersections found, return null
             if(d>r)
                 return null;
+
             double th = Math.sqrt(r*r-d*d);
             double t1 = alignZero(tm+th);
             double t2 = alignZero(tm-th);
+
+            // if ray intersects the sphere not on the starting point
             if(t1>0)
             {
                 p1 = ray.getPoint(t1);
@@ -76,6 +84,8 @@ public class Sphere extends RadialGeometry {
                 if(ray.getVector().dotProduct(a.subtract(o))!=0)
                  intersections.add(p1);
             }
+
+            // if ray intersects the sphere not on the starting point and in a different point
             if((t2>0)&&(t1!=t2))
             {
                 p2 = ray.getPoint(t2);

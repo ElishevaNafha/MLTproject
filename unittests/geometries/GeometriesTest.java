@@ -26,10 +26,15 @@ public class GeometriesTest {
         Plane plane;
         Triangle triangle;
         Ray ray = new Ray(new Point3D(0,0,1), new Vector(1,0,0));
+
+        // =============== Boundary Values Tests ==================
+
         //TC01: The list of geometries is empty
         geometries = new Geometries();
         result = geometries.findIntersections(ray);
         assertNull("List of geometries is empty", result);
+
+        // ============ Equivalence Partitions Tests ==============
 
         //TC02: No geometry intersects the ray
         sphere = new Sphere(1, new Point3D(3,3,3));
@@ -39,7 +44,6 @@ public class GeometriesTest {
         geometries.add(sphere);
         geometries.add(plane);
         geometries.add(triangle);
-        result = new ArrayList<>();
         result = geometries.findIntersections(ray);
         assertNull("No geometry intersects with ray", result);
 

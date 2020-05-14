@@ -22,7 +22,7 @@ public class CameraTest {
         Camera camera = new Camera(Point3D.ZERO, new Vector(0,0,1), new Vector(0,-1,0));
 
         // TC01: check direction of Vright
-        assertEquals("Vright wrong result", new Vector(1,0,0), camera.get_Vright());
+        assertEquals("Vright wrong result", new Vector(1,0,0), camera.getVright());
 
         // TC02: check non orthogonal vectors
         try {
@@ -33,9 +33,9 @@ public class CameraTest {
 
         // TC03: check not normalized vectors
         camera = new Camera(Point3D.ZERO, new Vector(0, 0, 3), new Vector(0, -4, 0));
-        assertEquals("Vto wrong result", new Vector(0,0,1), camera.get_Vto());
-        assertEquals("Vup wrong result", new Vector(0,-1,0), camera.get_Vup());
-        assertEquals("Vright wrong result", new Vector(1,0,0), camera.get_Vright());
+        assertEquals("Vto wrong result", new Vector(0,0,1), camera.getVto());
+        assertEquals("Vup wrong result", new Vector(0,-1,0), camera.getVup());
+        assertEquals("Vright wrong result", new Vector(1,0,0), camera.getVright());
     }
 
     /**
