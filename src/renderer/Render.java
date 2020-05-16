@@ -1,9 +1,10 @@
-package scene;
+package renderer;
 
 import elements.Camera;
 import geometries.*;
 import renderer.ImageWriter;
 import primitives.*;
+import scene.Scene;
 
 import java.util.List;
 

@@ -116,7 +116,7 @@ public class Scene {
      * add a geometries to the scene's geometries
      * @param geometries new geometries
      */
-    void addGeometries(Intersectable... geometries){
+    public void addGeometries(Intersectable... geometries){
         _geometries.add(geometries);
     }
 }

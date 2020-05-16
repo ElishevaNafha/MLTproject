@@ -1,4 +1,4 @@
-package scene;
+package renderer;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -6,6 +6,7 @@ import elements.*;
 import primitives.*;
 import geometries.*;
 import renderer.*;
+import scene.Scene;
 
 import java.util.ArrayList;
 import java.util.Collections;
