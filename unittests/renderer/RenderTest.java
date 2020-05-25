@@ -189,11 +189,11 @@ public class RenderTest {
         scene.addGeometries(
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 100), 50, new Point3D(0, 0, 50)));
 
-        scene.addLights(new DirectionalLight(new Color(500, 300, 0), new Vector(1, 1, 1)));
-        scene.addLights(new PointLight(new Color(200, 300, 0), new Point3D(-50, 50, -50),
-                1, 0.00001, 0.000001));
-        scene.addLights(new SpotLight(new Color(300, 300, 0), new Point3D(-50, 50, -50),
-                new Vector(1, -1, 2), 1, 0.00001, 0.00000001));
+        scene.addLights(new DirectionalLight(new Color(100, 300, 50), new Vector(1, 1, 1)));
+        scene.addLights(new PointLight(new Color(300, 150, 50), new Point3D(-50, 50, -50),
+                1, 0.0001, 0.00001));
+        scene.addLights(new SpotLight(new Color(250, 250, 0), new Point3D(-50, 50, -50),
+                new Vector(1, -1, 2), 1, 0.00001, 0.00001));
 
         ImageWriter imageWriter = new ImageWriter("sphereMultipleLights", 150, 150, 500, 500);
         Render render = new Render(imageWriter, scene);
