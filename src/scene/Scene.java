@@ -4,6 +4,7 @@ import primitives.*;
 import elements.*;
 import geometries.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class Scene {
     public Scene(String name) {
         _name = name;
         _geometries = new Geometries();
+        _lights = new ArrayList<>();
     }
 
     //getters

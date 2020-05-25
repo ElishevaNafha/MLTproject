@@ -29,15 +29,27 @@ public class Sphere extends RadialGeometry {
         super(radius);
         _center = center;
     }
-    //constructors
+
     /**
      * Sphere constructor based on its radius and center point and color
      * @param radius the length of the radius of the sphere
      * @param center the center of the sphere
      * @param emission the emission of the sphere
      */
-    public Sphere(double radius, Point3D center, Color emission){
+    public Sphere(Color emission, double radius, Point3D center){
         super(emission,radius);
+        _center = center;
+    }
+
+    /**
+     * Sphere constructor based on its radius and center point and color
+     * @param radius the length of the radius of the sphere
+     * @param center the center of the sphere
+     * @param emission the emission of the sphere
+     * @param material the material of the sphere
+     */
+    public Sphere(Color emission, Material material, double radius, Point3D center){
+        super(material, emission, radius);
         _center = center;
     }
 
@@ -62,8 +74,7 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<GeoPoint> findIntersections(Ray ray)
-        {
+    public List<GeoPoint> findIntersections(Ray ray) {
             ArrayList<GeoPoint> intersections = new ArrayList<>();
             Point3D p0 = ray.getStartPoint();
             Point3D p1, p2, a, b;

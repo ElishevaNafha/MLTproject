@@ -1,6 +1,7 @@
 package renderer;
 
 import elements.Camera;
+import elements.LightSource;
 import geometries.*;
 import renderer.ImageWriter;
 import primitives.*;
@@ -97,8 +98,7 @@ public class Render {
             if(p.point.equals(screenIntersection.point))
                 return p;
         }
-      //if (intersectionPoints.contains(screenIntersection))
-       //     return screenIntersection;
+
         // initialize to screen's intersection
         GeoPoint closestPoint = screenIntersection;
         double dis = screenDistance;
@@ -133,11 +133,67 @@ public class Render {
     /**
      * calculates the color of a point considering emission and lighting
      *
-     * @param point point to calculate color for
+     * @param intersection point to calculate color for
      * @return calculated color
      */
-    public Color calcColor(GeoPoint point) { // make private after testing
-        return _scene.getAmbientLight().getIntensity().add(point.geometry.getEmission());
+    private Color calcColor(GeoPoint intersection) {
+        Color color = _scene.getAmbientLight().getIntensity();
+        color = color.add(intersection.geometry.getEmission());
+        Vector v = intersection.point.subtract(_scene.getCamera().getLocation()).normalize();
+        Vector n = intersection.geometry.getNormal(intersection.point);
+        Material material =intersection.geometry.getMaterial();
+        int nShininess = material.getNShininess();
+        double kd = material.getKD();
+        double ks = material.getKS();
+        for (LightSource lightSource : _scene.getLights()) {
+            Vector l = lightSource.getL(intersection.point);
+            if (sign(n.dotProduct(l)) ==  sign(n.dotProduct(v))) {
+                Color lightIntensity = lightSource.getIntensity(intersection.point);
+                color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+                        calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+            }
+        }
+        return color;
+    }
+
+    /**
+     * returns sign of a number
+     * @param d number
+     * @return 1 or 0 or -1, according to sign
+     */
+    private int sign(double d){
+        if (d > 0)
+            return 1;
+        if (d < 0)
+            return -1;
+        return 0;
+    }
+
+    /**
+     * calculates the effect of diffusion of light in a point on a geometry
+     * @param kd diffusion factor
+     * @param l vector from light source to point
+     * @param n normal to geometry from point
+     * @param lightIntensity intensity of light from the light source at the point
+     * @return diffusive light of light source on point
+     */
+    private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity){
+        return lightIntensity.scale(kd * Math.abs(l.dotProduct(n)));
+    }
+
+    /**
+     * calculates the specular light from a light source in a point on a geometry
+     * @param ks specular factor
+     * @param l vector from light source to point
+     * @param n normal to geometry from point
+     * @param v vector from camera to point
+     * @param nShininess the shininess factor
+     * @param lightIntensity intensity of light from the light source at the point
+     * @return specular light of light source on point
+     */
+    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity){
+        Vector r = l.subtract(n.scale(2 * l.dotProduct(n))).normalize();
+        return lightIntensity.scale(ks * Math.pow(Math.max(0, -v.dotProduct(r)), nShininess));
     }
 
     /**
