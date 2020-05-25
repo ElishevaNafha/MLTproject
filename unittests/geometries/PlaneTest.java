@@ -42,7 +42,7 @@ public class PlaneTest {
         Plane plane = new Plane(new Point3D(0,0,1), new Point3D(1,0,1), new Point3D(0,1,1));
         Point3D p;
         List<Point3D> expected;
-        List<Point3D> result;
+        List<Intersectable.GeoPoint> result;
 
         // ============ Equivalence Partitions Tests ==============
 

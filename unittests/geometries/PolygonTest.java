@@ -99,7 +99,7 @@ public class PolygonTest {
         Polygon p = new Polygon(new Point3D(-1,-5,0), new Point3D(-1,-5,5), new Point3D(-1, 5, 5), new Point3D(-1,5,0));
         Ray r;
         List<Point3D> expected;
-        List<Point3D> result;
+        List<Intersectable.GeoPoint> result;
 
         // ============ Equivalence Partitions Tests ==============
 

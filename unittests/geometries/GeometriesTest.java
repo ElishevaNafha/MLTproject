@@ -20,7 +20,7 @@ public class GeometriesTest {
      */
     @Test
     public void findIntersections() {
-        List<Point3D> result;
+        List<Intersectable.GeoPoint> result;
         Geometries geometries;
         Sphere sphere;
         Plane plane;

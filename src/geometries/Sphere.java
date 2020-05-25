@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.*;
+import primitives.Color;
 import primitives.Vector;
 import static java.lang.System.out;
 
@@ -18,6 +19,7 @@ public class Sphere extends RadialGeometry {
     //fields
     Point3D _center;
 
+    //constructors
     /**
      * Sphere constructor based on its radius and center point
      * @param radius the length of the radius of the sphere
@@ -25,6 +27,17 @@ public class Sphere extends RadialGeometry {
      */
     public Sphere(double radius, Point3D center){
         super(radius);
+        _center = center;
+    }
+    //constructors
+    /**
+     * Sphere constructor based on its radius and center point and color
+     * @param radius the length of the radius of the sphere
+     * @param center the center of the sphere
+     * @param emission the emission of the sphere
+     */
+    public Sphere(double radius, Point3D center, Color emission){
+        super(emission,radius);
         _center = center;
     }
 
@@ -49,9 +62,9 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray)
+    public List<GeoPoint> findIntersections(Ray ray)
         {
-            ArrayList<Point3D> intersections = new ArrayList<>();
+            ArrayList<GeoPoint> intersections = new ArrayList<>();
             Point3D p0 = ray.getStartPoint();
             Point3D p1, p2, a, b;
             Vector v = ray.getVector();
@@ -61,7 +74,9 @@ public class Sphere extends RadialGeometry {
             // boundary value - if the ray starts at the center of the sphere, regular calculation doesn't work (see below)
             if(o.equals(p0)) //For some reason you can't have a zero vector so the normal calculation doesn't work when the ray starts in the center
             {
-                return List.of(p0.add(v.scale(r)));
+                List<GeoPoint> temp = new ArrayList<>();
+                temp.add(new GeoPoint(this, p0.add(v.scale(r))));
+                return temp;
             }
 
             Vector u = o.subtract(p0);
@@ -82,7 +97,7 @@ public class Sphere extends RadialGeometry {
                 p1 = ray.getPoint(t1);
                 a = new Point3D(p1);
                 if(ray.getVector().dotProduct(a.subtract(o))!=0)
-                 intersections.add(p1);
+                 intersections.add(new GeoPoint(this, p1));
             }
 
             // if ray intersects the sphere not on the starting point and in a different point
@@ -91,7 +106,7 @@ public class Sphere extends RadialGeometry {
                 p2 = ray.getPoint(t2);
                 a = new Point3D(p2);
                 if(ray.getVector().dotProduct(a.subtract(o))!=0)
-                    intersections.add(p2);
+                    intersections.add(new GeoPoint(this,p2));
             }
             if(intersections.isEmpty())
                 return null;

@@ -4,7 +4,7 @@ import primitives.*;
 import elements.*;
 import geometries.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Scene class represents a scene made of a collection of geometries in 3D Cartesian coordinate system,
@@ -20,6 +20,7 @@ public class Scene {
     private Geometries _geometries;
     private Camera _camera;
     private double _distance;
+    private List<LightSource> _lights;
 
     /**
      * Scene constructor
@@ -30,7 +31,7 @@ public class Scene {
         _geometries = new Geometries();
     }
 
-    //getters and setters
+    //getters
     /**
      * getter for scene's name
      * @return scene's name
@@ -80,6 +81,15 @@ public class Scene {
     }
 
     /**
+     * getter for scene's list of light sources
+     * @return list of light sources
+     */
+    public List<LightSource> getLights() {
+        return _lights;
+    }
+
+    //setters
+    /**
      * setter for scene's background color
      * @param background scene's background color
      */
@@ -118,5 +128,15 @@ public class Scene {
      */
     public void addGeometries(Intersectable... geometries){
         _geometries.add(geometries);
+    }
+
+    /**
+     * adds lights to scene's list of light sources
+     * @param lights lights to add
+     */
+    public void addLights(LightSource... lights) {
+        for (LightSource light:lights) {
+            _lights.add(light);
+        }
     }
 }

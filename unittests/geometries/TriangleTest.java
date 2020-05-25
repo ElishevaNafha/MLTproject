@@ -36,7 +36,7 @@ public class TriangleTest {
         Triangle t = new Triangle(new Point3D(-1,-5,0), new Point3D(-1,5,0), new Point3D(-1, 0, 10));
         Ray r;
         List<Point3D> expected;
-        List<Point3D> result;
+        List<Intersectable.GeoPoint> result;
 
         // ============ Equivalence Partitions Tests ==============
 

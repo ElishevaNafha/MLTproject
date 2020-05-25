@@ -5,6 +5,7 @@ import geometries.*;
 import renderer.ImageWriter;
 import primitives.*;
 import scene.Scene;
+import geometries.Intersectable.GeoPoint;
 
 import java.util.List;
 
@@ -46,10 +47,10 @@ public class Render {
                 Ray ray = camera.constructRayThroughPixel(nX, nY, j, i, distance, width, height);
 
                 // find all ray's intersections
-                List<Point3D> intersectionPoints = geometries.findIntersections(ray);
+                List<GeoPoint> intersectionPoints = geometries.findIntersections(ray);
 
                 // find closest intersection
-                Point3D closestPoint = getClosestPoint(intersectionPoints);
+                GeoPoint closestPoint = getClosestPoint(intersectionPoints);
 
                 // if no intersections found after view screen, write as background
                 if (closestPoint == null)
@@ -72,7 +73,7 @@ public class Render {
      * @param intersectionPoints all intersection points on the ray
      * @return closest intersection point on the ray
      */
-    public Point3D getClosestPoint(List<Point3D> intersectionPoints) { // make private after testing
+    public GeoPoint getClosestPoint(List<GeoPoint> intersectionPoints) { // make private after testing
 
         //if there are no points, return null
         if (intersectionPoints == null)
@@ -84,23 +85,27 @@ public class Render {
         double d = _scene.getDistance();
 
         // calculate distance to the intersection with the view plane to avoid intersections before view plane
-        Ray ray = new Ray(p0, new Vector(intersectionPoints.get(0).subtract(p0)));
+        Ray ray = new Ray(p0, new Vector(intersectionPoints.get(0).point.subtract(p0)));
         Plane viewPlane = new Plane(new Point3D(p0.add(camera.getVto().scale(d))),
                                     camera.getVto());
-        Point3D screenIntersection = viewPlane.findIntersections(ray).get(0);
-        double screenDistance = p0.distance(screenIntersection);
+        GeoPoint screenIntersection = viewPlane.findIntersections(ray).get(0);
+        double screenDistance = p0.distance(screenIntersection.point);
 
         // find closest point
         // if there's an intersection on the view plane, return it
-        if (intersectionPoints.contains(screenIntersection))
-            return screenIntersection;
+        for (GeoPoint p:intersectionPoints) {
+            if(p.point.equals(screenIntersection.point))
+                return p;
+        }
+      //if (intersectionPoints.contains(screenIntersection))
+       //     return screenIntersection;
         // initialize to screen's intersection
-        Point3D closestPoint = screenIntersection;
+        GeoPoint closestPoint = screenIntersection;
         double dis = screenDistance;
         // calculate
         double tempDis;
-        for (Point3D point: intersectionPoints) {
-            tempDis = p0.distance(point);
+        for (GeoPoint point: intersectionPoints) {
+            tempDis = p0.distance(point.point);
             // if the intersection is after the view screen
             if (tempDis > screenDistance){
                 // if the current point is the first point found after the view screen
@@ -131,8 +136,8 @@ public class Render {
      * @param point point to calculate color for
      * @return calculated color
      */
-    public Color calcColor(Point3D point) { // make private after testing
-        return _scene.getAmbientLight().getIntensity();
+    public Color calcColor(GeoPoint point) { // make private after testing
+        return _scene.getAmbientLight().getIntensity().add(point.geometry.getEmission());
     }
 
     /**

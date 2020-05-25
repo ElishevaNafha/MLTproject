@@ -31,7 +31,7 @@ public class SphereTest {
     public void testFindIntersections() {
         Sphere sphere = new Sphere(1d, new Point3D(1, 0, 0));
         Point3D p1, p2;
-        List<Point3D> result;
+        List<Intersectable.GeoPoint> result;
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: Ray's line is outside the sphere (0 points)
