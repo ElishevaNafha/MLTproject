@@ -284,6 +284,43 @@ public class RenderTest {
         render.writeToImage();
     }
 
+    /**
+     * Produce a picture of a two triangles lighted by multiple light sources
+     */
+    @Test
+    public void trianglesMultipleLightSources() {
+        Scene scene = new Scene("Test scene");
+        scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
+        scene.setDistance(1000);
+        scene.setBackground(Color.BLACK);
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+        scene.addGeometries(
+                new Triangle(Color.BLACK, new Material(0.8, 0.2, 300),
+                        new Point3D(-150, 150, 150), new Point3D(150, 150, 150), new Point3D(75, -75, 150)),
+                new Triangle(Color.BLACK, new Material(0.8, 0.2, 300),
+                        new Point3D(-150, 150, 150), new Point3D(-70, -70, 50), new Point3D(75, -75, 150)));
+
+        scene.addLights(new DirectionalLight(new Color(150, 75, 150), new Vector(0, 0, 1)));
+        scene.addLights(new SpotLight(new Color(180, 130, 100),
+                new Point3D(2, 18, 134), new Vector(-2, 2, 1),
+                1, 0.0001, 0.000005));
+        scene.addLights(new PointLight(new Color(190, 180, 120),
+                new Point3D(60, 40, 130),
+                1, 0.0005, 0.0005));
+
+        ImageWriter imageWriter = new ImageWriter("triangleMultipleLightSources", 200, 200, 500, 500);
+        Render render = new Render(imageWriter, scene);
+
+        render.renderImage();
+        render.writeToImage();
+    }
+
+
+
+
+
+
     @Test
     public void testCalcColor() {
         //not necessary meanwhile
