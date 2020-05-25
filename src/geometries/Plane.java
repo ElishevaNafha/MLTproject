@@ -55,22 +55,52 @@ public class Plane extends Geometry {
      * @param point3 a point on the plane
      */
     public Plane(Color emission,Point3D point1, Point3D point2, Point3D point3){
+        super(emission);
         _point = point1;
-        _emission = emission;
         //calculate normal
         Vector v1 = point2.subtract(point1);
         Vector v2 = point3.subtract(point1);
         _normal = v1.crossProduct(v2).normalize();
     }
+
     /**
      * Plane constructor receiving a point and the normal vector to the plane and color
      * @param emission the emission of the plane
      * @param point a point on the plane
      * @param normal the normal to the plane
-     * @param emission the emission of the plane
      */
     public Plane(Color emission,Point3D point, Vector normal){
-        _emission = emission;
+        super(emission);
+        _point = point;
+        _normal = normal.normalized();
+    }
+
+    /**
+     * Plane constructor receiving 3 points on the plane and color
+     * @param material the material of the plane
+     * @param emission the emission of the plane
+     * @param point1 a point on the plane
+     * @param point2 a point on the plane
+     * @param point3 a point on the plane
+     */
+    public Plane(Material material, Color emission,Point3D point1, Point3D point2, Point3D point3){
+        super(emission, material);
+        _point = point1;
+        //calculate normal
+        Vector v1 = point2.subtract(point1);
+        Vector v2 = point3.subtract(point1);
+        _normal = v1.crossProduct(v2).normalize();
+    }
+
+    /**
+     * Plane constructor receiving a point and the normal vector to the plane and color
+     * @param material the material of the plane
+     * @param emission the emission of the plane
+     * @param point a point on the plane
+     * @param normal the normal to the plane
+     */
+    public Plane(Material material, Color emission, Point3D point, Vector normal){
+        super(emission, material);
         _point = point;
         _normal = normal.normalized();
     }

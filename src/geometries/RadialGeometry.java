@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Color;
+import primitives.Material;
 import primitives.Ray;
 /**
  * RadialGeometry class represents 3d shapes that are based on a radius
@@ -18,34 +19,36 @@ public abstract class RadialGeometry extends Geometry{
     public RadialGeometry(double radius){
         _radius = radius;
     }
+
     /**
      * RadialGeometry constructor, receives the length of the radius and color
      * @param radius the radius
      * @param emission the emission of the geometry
      */
-    public RadialGeometry(Color emission,double radius){
+    public RadialGeometry(Color emission, double radius){
+        super(emission);
         _radius = radius;
-        _emission = emission;
     }
-
 
     /**
-     * copy constructor for RadialGeometry
-     * @param other RadialGeometry to copy
+     * RadialGeometry constructor, receives the length of the radius and color
+     * @param radius the radius
+     * @param emission the emission of the geometry
+     * @param material the material of the geometry
      */
-    public RadialGeometry(RadialGeometry other) {
-        _radius=other._radius;
+    public RadialGeometry(Material material, Color emission, double radius){
+        super(emission, material);
+        _radius = radius;
     }
+
     /**
      * copy constructor for RadialGeometry with color
      * @param other RadialGeometry to copy
-     * @param emission the emission of the geometry
      */
-    public RadialGeometry(Color emission,RadialGeometry other) {
-        _radius=other._radius;
-        _emission = emission;
+    public RadialGeometry(RadialGeometry other) {
+        super(other._emission, other._material);
+        _radius = other._radius;
     }
-
 
     /**
      * getter for radius
