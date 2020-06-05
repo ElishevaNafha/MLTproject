@@ -17,6 +17,11 @@ import static primitives.Util.alignZero;
  * @author Eliana Rabinowitz and Elisheva Nafha
  * */
 public class Render {
+    //constants
+    private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
+
     //fields
     private ImageWriter _imageWriter;
     private Scene _scene;
@@ -75,7 +80,8 @@ public class Render {
      * @param intersectionPoints all intersection points on the ray
      * @return closest intersection point on the ray
      */
-    public GeoPoint getClosestPoint(List<GeoPoint> intersectionPoints) { // make private after testing
+    public GeoPoint getClosestPoint(List<GeoPoint> intersectionPoints) {
+        // make private after testing
         //if there are no points, return null
         if (intersectionPoints == null)
             return null;
@@ -215,7 +221,6 @@ public class Render {
         }
     }
 
-    private static final double DELTA = 0.1;
     /**
      * checks whether point is unshaded
      * @param l vector from light source to point
@@ -239,5 +244,25 @@ public class Render {
             }
         }
         return true;
+    }
+
+    /**
+     * @param v vector from camera to point
+     * @param n normal to geometry form point
+     * @param point
+     * @return reflected ray
+     */
+    private Ray getReflectiveRay(Vector v, Vector n, Point3D point){
+        Vector r = v.subtract(n.scale(2*(v.dotProduct(n)))).normalize();
+        return new Ray(point,r);
+    }
+
+    /**
+     * @param v vector from camera to point
+     * @param point
+     * @return refracted ray
+     */
+    private Ray getRefractedRay(Vector v, Point3D point){
+        return new Ray(point, v);
     }
 }
