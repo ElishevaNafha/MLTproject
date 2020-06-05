@@ -10,12 +10,13 @@ import geometries.Intersectable.GeoPoint;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * Render class is responsible of rendering a scene into an image.
  * @author Eliana Rabinowitz and Elisheva Nafha
  * */
 public class Render {
-
     //fields
     private ImageWriter _imageWriter;
     private Scene _scene;
@@ -75,7 +76,6 @@ public class Render {
      * @return closest intersection point on the ray
      */
     public GeoPoint getClosestPoint(List<GeoPoint> intersectionPoints) { // make private after testing
-
         //if there are no points, return null
         if (intersectionPoints == null)
             return null;
@@ -148,9 +148,11 @@ public class Render {
         for (LightSource lightSource : _scene.getLights()) {
             Vector l = lightSource.getL(intersection.point);
             if (sign(n.dotProduct(l)) ==  sign(n.dotProduct(v))) {
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                        calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                if(unshaded(lightSource,l,n,intersection)) {
+                    Color lightIntensity = lightSource.getIntensity(intersection.point);
+                    color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                }
             }
         }
         return color;
@@ -211,5 +213,31 @@ public class Render {
                     _imageWriter.writePixel(j, i, color);
             }
         }
+    }
+
+    private static final double DELTA = 0.1;
+    /**
+     * checks whether point is unshaded
+     * @param l vector from light source to point
+     * @param n normal to geometry from point
+     * @param geopoint the point
+     * @return true if unshaded, otherwise false
+     */
+    private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint geopoint){
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
+        Point3D point = geopoint.point.add(delta);
+        Ray lightRay = new Ray(point, lightDirection);
+        List<GeoPoint> intersections = _scene.getGeometries().findIntersections(lightRay);
+        if (intersections==null)
+            return true;
+        double lightDistance = light.getDistance(geopoint.point);
+
+        for (GeoPoint gp : intersections) {
+            if (lightDistance>gp.point.distance(geopoint.point)){
+             return false;
+            }
+        }
+        return true;
     }
 }

@@ -23,7 +23,7 @@ public class PointLight extends Light implements LightSource {
      * @param kL attenuation factor
      * @param intensity intensity of light at source
      */
-    public PointLight(Color intensity, Point3D position, double kC, double kQ, double kL){
+    public PointLight(Color intensity, Point3D position, double kC, double kL, double kQ){
         super(intensity);
         _position = position;
         _kC = kC;
@@ -50,5 +50,10 @@ public class PointLight extends Light implements LightSource {
     public Vector getL(Point3D p) {
         Vector L = new Vector(p.subtract(_position));
         return L.normalize();
+    }
+
+    @Override
+    public double getDistance(Point3D point) {
+        return point.distance(_position);
     }
 }
