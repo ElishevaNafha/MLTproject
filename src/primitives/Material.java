@@ -28,8 +28,8 @@ public class Material {
      * @param _kR reflectivity
      */
     public Material(double _kD, double _kS, int _nShininess, double _kT, double _kR) {
-        this._kR=_kR;
-        this._kT=_kT;
+        this._kR= _kR;
+        this._kT= _kT;
         this._kD = _kD;
         this._kS = _kS;
         this._nShininess = _nShininess;

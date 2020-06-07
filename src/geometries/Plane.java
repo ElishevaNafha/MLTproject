@@ -155,6 +155,11 @@ public class Plane extends Geometry {
         //check if intersection point is on the plane or on the ray's negative side
         if (t <= 0)
             return null;
+        double x = ray.getVector().getEndpoint().getX().get();
+        double y = ray.getVector().getEndpoint().getY().get();
+        double z = ray.getVector().getEndpoint().getZ().get();
+        if (isZero(x * t) && isZero(y * t) && isZero(z * t))
+            return null;
 
         //return intersection point
         List<GeoPoint> intersection = new ArrayList<>();

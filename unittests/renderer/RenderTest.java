@@ -44,65 +44,68 @@ public class RenderTest {
 
     @Test
     public void testGetClosestPoint() {
+        Ray ray = new Ray(new Point3D(0,0,0), new Vector(0,0,1));
         Scene scene = new Scene("hello");
         scene.setCamera(new Camera(Point3D.ZERO, new Vector(0,0,1), new Vector(0,-1,0)));
         scene.setDistance(2);
         Render render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
 
-        List<Intersectable.GeoPoint> points;
-
         // ============ Equivalence Partitions Tests ==============
 
-        //TC01: more than one point to check
-        points = new ArrayList<>();
-        Plane plane = new Plane(new Point3D(3,3,3), new Point3D(5,5,5), new Point3D(4,4,4));
-        Collections.addAll(points, new Intersectable.GeoPoint(plane,new Point3D(3,3,3)), new Intersectable.GeoPoint(plane,new Point3D(4,4,4)),new Intersectable.GeoPoint(plane,new Point3D(5,5,5)));
-        assertEquals("getClosestPoint: wrong point when there's more than one point", new Point3D(3,3,3), render.getClosestPoint(points));
+        //TC01: no points to check
+        assertNull("getClosestPoint: doesn't return null when there're no points", render.getClosestPoint(ray));
 
         //TC02: one point to check
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,3,4), new Point3D(5,5,5), new Point3D(4,4,4));
-        points.add(new Intersectable.GeoPoint(plane,new Point3D(1,3,4)));
-        assertEquals("getClosestPoint: wrong point when there's one point", new Point3D(1,3,4), render.getClosestPoint(points));
+        scene.addGeometries(new Plane(new Point3D(0,0,3), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
+        assertEquals("getClosestPoint: wrong point when there's one point", new Point3D(0,0,3),
+                render.getClosestPoint(ray).point);
 
-        //TC03: no points to check
-        assertNull("getClosestPoint: doesn't return null when there're no points", render.getClosestPoint(null));
+        //TC03: more than one point to check
+        scene.addGeometries(new Plane(new Point3D(0,0,4), new Vector(0,0,1)),
+                new Plane(new Point3D(0,0,5), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
+        assertEquals("getClosestPoint: wrong point when there's more than one point", new Point3D(0,0,3),
+                render.getClosestPoint(ray).point);
 
         // =============== Boundary Values Tests ==================
 
         //TC04: there are two closest points
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,3,4), new Point3D(5,5,5), new Point3D(3,3,3));
-        Collections.addAll(points, new Intersectable.GeoPoint(plane, new Point3D(3,3,3)),new Intersectable.GeoPoint(plane, new Point3D(4,4,4)),new Intersectable.GeoPoint(plane, new Point3D(3,3,3)));
-        assertEquals("getClosestPoint: wrong point when there're two closest points", new Point3D(3,3,3), render.getClosestPoint(points));
+        scene.addGeometries(new Sphere(2, new Point3D(0,0,5)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
+        assertEquals("getClosestPoint: wrong point when there're two closest points", new Point3D(0,0,3),
+                render.getClosestPoint(ray).point);
 
-        //TC05: intersection before view plane, more than one point
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,1,1), new Point3D(4,4,4), new Point3D(3,3,3));
-        Collections.addAll(points,new Intersectable.GeoPoint(plane, new Point3D(1,1,1)),new Intersectable.GeoPoint(plane, new Point3D(4,4,4)),new Intersectable.GeoPoint(plane, new Point3D(3,3,3)));
-        assertEquals("getClosestPoint: wrong point when there's a point before view plane, more than one point",
-                new Point3D(3,3, 3), render.getClosestPoint(points));
-
-        //TC06: intersection before view plane, only one point
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,1,1), new Point3D(4,4,4), new Point3D(3,3,3));
-        points.add(new Intersectable.GeoPoint(plane,new Point3D(1,1,1)));
+        //TC05: intersection before view plane, only one point
+        scene = new Scene("hello");
+        scene.setCamera(new Camera(Point3D.ZERO, new Vector(0,0,1), new Vector(0,-1,0)));
+        scene.setDistance(2);
+        scene.addGeometries(new Plane(new Point3D(0,0,1), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
         assertNull("getClosestPoint: wrong point when there's a point before view plane, only one point",
-                render.getClosestPoint(points));
+                render.getClosestPoint(ray));
 
-        //TC07: some intersections before view plane, no points after it
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,1,1), new Point3D(1.5,1.5,1.5), new Point3D(3,3,3));
-        Collections.addAll(points, new Intersectable.GeoPoint(plane,new Point3D(1,1,1)), new Intersectable.GeoPoint(plane, new Point3D(1.5,1.5,1.5)));
+        //TC06: some intersections before view plane, no points after it
+        scene.addGeometries(new Plane(new Point3D(0,0,1.5), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
         assertNull("getClosestPoint: wrong point when there're some intersections before view plane, no points after it",
-                render.getClosestPoint(points));
+                render.getClosestPoint(ray));
+
+        //TC07: intersections before view plane and intersections after it
+        scene.addGeometries(new Plane(new Point3D(0,0,3), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
+        assertEquals("getClosestPoint: wrong point when there's a point before view plane, more than one point",
+                new Point3D(0,0, 3), render.getClosestPoint(ray).point);
 
         //TC08: intersection on view plane
-        points = new ArrayList<>();
-        plane = new Plane(new Point3D(1,1,1), new Point3D(2,2,2), new Point3D(3,3,3));
-        points.add(new Intersectable.GeoPoint(plane,new Point3D(2,2,2)));
-        assertEquals("getClosestPoint: wrong point when there's an intersection on view plane",
-                new Point3D(2,2,2), render.getClosestPoint(points));
+        scene = new Scene("hello");
+        scene.setCamera(new Camera(Point3D.ZERO, new Vector(0,0,1), new Vector(0,-1,0)));
+        scene.setDistance(2);
+        scene.addGeometries(new Plane(new Point3D(0,0,2), new Vector(0,0,1)),
+                new Plane(new Point3D(0,0,3), new Vector(0,0,1)));
+        render = new Render(new ImageWriter("hello", 4,4,4,4), scene);
+       assertEquals("getClosestPoint: wrong point when there's an intersection on view plane",
+                new Point3D(0,0,2), render.getClosestPoint(ray).point);
     }
 
     /**

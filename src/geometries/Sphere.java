@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Sphere class represents a sphere in 3D Cartesian coordinate system
@@ -105,19 +106,30 @@ public class Sphere extends RadialGeometry {
             // if ray intersects the sphere not on the starting point
             if(t1>0)
             {
-                p1 = ray.getPoint(t1);
-                a = new Point3D(p1);
-                if(ray.getVector().dotProduct(a.subtract(o))!=0)
-                 intersections.add(new GeoPoint(this, p1));
+                double x = ray.getVector().getEndpoint().getX().get();
+                double y = ray.getVector().getEndpoint().getY().get();
+                double z = ray.getVector().getEndpoint().getZ().get();
+                if (!(isZero(x * t1) && isZero(y * t1) && isZero(z * t1))) {
+                    p1 = ray.getPoint(t1);
+                    a = new Point3D(p1);
+                    if (ray.getVector().dotProduct(a.subtract(o)) != 0)
+                        intersections.add(new GeoPoint(this, p1));
+                }
             }
 
             // if ray intersects the sphere not on the starting point and in a different point
             if((t2>0)&&(t1!=t2))
             {
-                p2 = ray.getPoint(t2);
-                a = new Point3D(p2);
-                if(ray.getVector().dotProduct(a.subtract(o))!=0)
-                    intersections.add(new GeoPoint(this,p2));
+                // make sure the vector created is not zero vector
+                double x = ray.getVector().getEndpoint().getX().get();
+                double y = ray.getVector().getEndpoint().getY().get();
+                double z = ray.getVector().getEndpoint().getZ().get();
+                if (!(isZero(x * t2) && isZero(y * t2) && isZero(z * t2))) {
+                    p2 = ray.getPoint(t2);
+                    a = new Point3D(p2);
+                    if (ray.getVector().dotProduct(a.subtract(o)) != 0)
+                        intersections.add(new GeoPoint(this, p2));
+                }
             }
             if(intersections.isEmpty())
                 return null;
