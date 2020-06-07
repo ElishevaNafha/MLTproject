@@ -6,6 +6,9 @@ package primitives;
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class Ray {
+
+    private static final double DELTA = 0.1;
+
     //fields
     /**
      * Ray's start point
@@ -29,6 +32,12 @@ public class Ray {
             vector.normalize();
         _startpoint = point;
         _vector = vector;
+    }
+
+    public Ray(Point3D head, Vector direction, Vector normal){
+        Vector delta = normal.scale(direction.dotProduct(normal) > 0 ? DELTA : - DELTA);
+        _startpoint = head.add(delta);
+        _vector = direction;
     }
 
     /**
