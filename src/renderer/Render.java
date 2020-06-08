@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 /**
  * Render class is responsible of rendering a scene into an image.
@@ -51,9 +52,6 @@ public class Render {
 
         for (int i = 0; i < nY; i++){
             for (int j = 0; j < nX; j++){
-                if ((i == 250) && (j == 250)){
-                    System.out.print("hello");
-                }
                 Ray ray = camera.constructRayThroughPixel(nX, nY, j, i, distance, width, height);
 
                 // find closest intersection
@@ -218,6 +216,8 @@ public class Render {
      * @return diffusive light of light source on point
      */
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity){
+        if (l.dotProduct(n) == 0)
+            return Color.BLACK;
         return lightIntensity.scale(kd * Math.abs(l.dotProduct(n)));
     }
 
@@ -232,6 +232,10 @@ public class Render {
      * @return specular light of light source on point
      */
     private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity){
+        double dp = l.dotProduct(n);
+        if ((dp == 0) || (isZero(dp * n.getEndpoint().getX().get()) &&
+                isZero(dp * n.getEndpoint().getY().get()) && isZero(dp * n.getEndpoint().getZ().get())))
+            return Color.BLACK;
         Vector r = l.subtract(n.scale(2 * l.dotProduct(n))).normalize();
         return lightIntensity.scale(ks * Math.pow(Math.max(0, -v.dotProduct(r)), nShininess));
     }
@@ -254,29 +258,13 @@ public class Render {
     }
 
     /**
-     * checks whether point is unshaded
+     * checks how shaded a point is
+     * @param light current light source
      * @param l vector from light source to point
      * @param n normal to geometry from point
      * @param geopoint the point
-     * @return true if unshaded, otherwise false
+     * @return amount of light reaching the point from the light source
      */
-    private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint geopoint){
-        Vector lightDirection = l.scale(-1); // from point to light source
-        Ray lightRay = new Ray(geopoint.point, lightDirection, n);
-        List<GeoPoint> intersections = _scene.getGeometries().findIntersections(lightRay);
-        if (intersections==null)
-            return true;
-        double lightDistance = light.getDistance(geopoint.point);
-
-        for (GeoPoint gp : intersections) {
-            if (lightDistance>gp.point.distance(geopoint.point)){
-                if (gp.geometry.getMaterial().getKT() == 0)
-                    return false;
-            }
-        }
-        return true;
-    }
-
     private double transparency(LightSource light, Vector l, Vector n, GeoPoint geopoint) {
         Vector lightDirection = l.scale(-1); // from point to light source
         Ray lightRay = new Ray(geopoint.point, lightDirection, n);
