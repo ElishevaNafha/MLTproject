@@ -162,7 +162,7 @@ public class ShadowTests {
 						new Point3D(-150, 150, 115), new Point3D(150, 150, 135), new Point3D(75, -75, 150)), //
 				new Triangle(Color.BLACK, new Material(0, 0.8, 60), //
 						new Point3D(-150, 150, 115), new Point3D(-70, -70, 140), new Point3D(75, -75, 150)), //
-				new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30), // )
+				new Sphere(new Color(java.awt.Color.BLUE), new Material(0.5, 0.5, 30,0,0.5), // )
 						30, new Point3D(0, 0, 115)));
 
 		scene.addLights(new SpotLight(new Color(700, 400, 400), //

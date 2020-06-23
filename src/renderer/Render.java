@@ -10,6 +10,7 @@ import geometries.Intersectable.GeoPoint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
@@ -22,6 +23,9 @@ public class Render {
     //constants
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
+    private static final int MAX_GENERATED_RAYS_FACTOR = 10;
+    private static final int NUM_SAMPLE_RAYS = 300;
+    private static final double RADIUS = 10;
 
     //fields
     private ImageWriter _imageWriter;
@@ -168,7 +172,7 @@ public class Render {
             Ray reflectedRay = getReflectedRay(n, geopoint.point, inRay);
             GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
             if (reflectedPoint != null)
-                color = color.add(calcColor(reflectedPoint, reflectedRay,
+                color = color.add(calcSampleRays(reflectedRay, RADIUS, geopoint.geometry.getMaterial().getKGS(),
                         level - 1, kkr).scale(kr));
         }
 
@@ -176,8 +180,13 @@ public class Render {
         if (kkt > MIN_CALC_COLOR_K) {
             Ray refractedRay = getRefractedRay(n, geopoint.point, inRay);
             GeoPoint refractedPoint = findClosestIntersection(refractedRay);
-            if (refractedPoint != null)
-                color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+            if (refractedPoint != null) {
+                if(geopoint.geometry.getMaterial().getKGS()==0){
+
+                }
+                color = color.add(calcSampleRays(refractedRay, RADIUS, geopoint.geometry.getMaterial().getKDG(),
+                        level - 1, kkt).scale(kt));
+            }
         }
 
         return color;
@@ -192,6 +201,41 @@ public class Render {
      */
     private Color calcColor(GeoPoint geopoint, Ray inRay) {
         return calcColor(geopoint, inRay, MAX_CALC_COLOR_LEVEL, 1.0).add(_scene.getAmbientLight().getIntensity());
+    }
+
+    /**
+     * calculates reflection or refraction based on a beam of rays
+     *
+     * @param base base reflection / refraction ray
+     * @param radius radius of sample rays' virtual circle
+     * @param distance distance between point and sample rays' virtual circle
+     * @param recursionLevel recursion level
+     * @param k reduction factor (kkt / kkr)
+     * @return average effect of transparency / reflectivity using a beam of rays
+     */
+    private Color calcSampleRays(Ray base, double radius, double distance,
+                                 int recursionLevel,double k){
+
+        // get all sample rays
+        List<Ray> sampleRays = getSampleRays(base,radius,distance);
+        Color total = new Color(0,0,0);
+
+        // sum effect of all rays
+        GeoPoint closestIntersection;
+        Color tempColor = new Color(0, 0, 0);
+        for (Ray ray:sampleRays) {
+            closestIntersection = findClosestIntersection(ray);
+            if (closestIntersection != null)
+                tempColor = calcColor(closestIntersection, ray, recursionLevel, k);
+            total = total.add(tempColor);
+        }
+
+        // reduce effect to average effect and return it
+        // if one ray
+        if (distance == 0)
+            return total;
+        // if NUM_SAMPLE_RAYS rays
+        return total.reduce(NUM_SAMPLE_RAYS+1);
     }
 
     /**
@@ -283,7 +327,6 @@ public class Render {
         return ktr;
     }
 
-
     /**
      * @param n normal to geometry form point
      * @param point
@@ -303,4 +346,69 @@ public class Render {
     private Ray getRefractedRay(Vector n, Point3D point, Ray ray){
         return new Ray(point, ray.getVector(), n);
     }
+
+    /**
+     * generates a beam of rays surrounding a base ray. the rays are generated randomly.
+     * @param base base ray
+     * @param radius radius of the circle the rays are generated through
+     * @param distance distance of the circle from the ray's start
+     * @return a list of rays
+     */
+    private List<Ray> getSampleRays(Ray base,  double radius, double distance){
+
+        List<Ray> sampleRays = new ArrayList<>();
+
+        // if not wanted sample rays
+        if(distance==0){
+            sampleRays.add(base);
+            return sampleRays;
+        }
+
+        // --- name parameters ---
+        Point3D p0 = base.getStartPoint();
+        Vector v = base.getVector();
+        Point3D p = base.getStartPoint().add(base.getVector().scale(distance));
+
+        // --- create relative "Vup" and "Vright" vectors on the plane that the circle is on ---
+
+        //generate a non parallel vector to base vector
+        Vector helpVector = v.add(new Vector(1,0,0));
+
+        Vector relativeVup = v.crossProduct(helpVector).normalize();
+        Vector relativeVright = v.crossProduct(relativeVup);
+
+        // --- create random rays ---
+        // the rays are generated randomly within a square surrounding the circle. only rays that are generated in the
+        // circle are inserted to the sample rays list. if not found numRays rays within a large amount of attempts, we
+        // stop the loop and return those that we found
+
+        int numRaysCurrent = 1; // total number of iterations (including base ray)
+        int numSampleRaysCurrent = 1; // number of rays in the list (including base ray)
+        double x, y;
+        Ray tempRay;
+        Point3D tempPoint;
+        Vector tempVector;
+
+        // generate rays until numRays is reached or max number of trials reached
+        while ((numSampleRaysCurrent < NUM_SAMPLE_RAYS) && (numRaysCurrent < MAX_GENERATED_RAYS_FACTOR * NUM_SAMPLE_RAYS)){
+            // generate random coordinates on the square surrounding the circle (from 0 to 2 * radius)
+            x = Math.random() * radius * 2;
+            y = Math.random() * radius * 2;
+            // convert the relative coordinates to real coordinates (similarly to constructRayThroughPixel from camera)
+            tempPoint = p.add(relativeVright.scale(x - radius)).add(relativeVup.scale(y - radius));
+            // check that the point is in the circle
+            if (tempPoint.distanceSquared(p) < radius * radius) {
+                tempVector = tempPoint.subtract(p0);
+                tempRay = new Ray(p0, tempVector);
+                sampleRays.add(tempRay);
+                numSampleRaysCurrent++;
+            }
+            numRaysCurrent++;
+        }
+
+        sampleRays.add(base);
+        return sampleRays;
+    }
+
+
 }

@@ -6,6 +6,8 @@ public class Material {
     double _kS; //specular factor
     double _kT; //transparency factor
     double _kR; //reflective factor
+    double _kGS; //glossiness factor
+    double _kDG; //Diffusive glass factor
     int _nShininess;
 
     //constructors
@@ -28,11 +30,27 @@ public class Material {
      * @param _kR reflectivity
      */
     public Material(double _kD, double _kS, int _nShininess, double _kT, double _kR) {
+        this(_kD, _kS, _nShininess, _kT, _kR, 0, 0);
+    }
+
+    /**
+     * constructor for material
+     * @param _kD diffusion
+     * @param _kS specular
+     * @param _nShininess shininess
+     * @param _kT transparency
+     * @param _kR reflectivity
+     * @param _kGS glossy surface effect
+     * @param _kDG diffuse glass effect
+     */
+    public Material(double _kD, double _kS, int _nShininess, double _kT, double _kR, double _kGS, double _kDG) {
         this._kR= _kR;
         this._kT= _kT;
         this._kD = _kD;
         this._kS = _kS;
         this._nShininess = _nShininess;
+        this._kGS = _kGS;
+        this._kDG = _kDG;
     }
 
     //getters
@@ -75,5 +93,21 @@ public class Material {
      */
     public int getNShininess() {
         return _nShininess;
+    }
+
+    /**
+     * getter for glossiness factor
+     * @return kGS
+     */
+    public double getKGS() {
+        return _kGS;
+    }
+
+    /**
+     * getter for diffuse glass factor
+     * @return kDG
+     */
+    public double getKDG() {
+        return _kDG;
     }
 }
