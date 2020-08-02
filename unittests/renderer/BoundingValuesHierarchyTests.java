@@ -15,6 +15,9 @@ import static org.junit.Assert.assertNull;
  * test class for bounding values hierarchy algorithm
  */
 public class BoundingValuesHierarchyTests {
+    /**
+     * tests creation of box
+     */
     @Test
     public void createBoxTest()
     {
@@ -67,34 +70,6 @@ public class BoundingValuesHierarchyTests {
 
     }
 
-    @Test
-    public void complexPicture(){
-        Scene scene = new Scene("Test scene");
-        scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
-        scene.setDistance(1000);
-        scene.setBackground(Color.BLACK);
-        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-        for(double i=0;i<300;i++)
-        {
-            scene.addGeometries(        new Triangle(new Color(new java.awt.Color(100,130,100)), new Material(0.1, 0.7, 10, 0, 0),
-                            new Point3D(-50, 100, 500), new Point3D(i, 100, 600), new Point3D(-20, 0, 700)));
-        }
-        scene.addLights(
-                new SpotLight(new Color(220, 220, 150), //
-                        new Point3D(120, -100, 0), new Vector(-1, 1, -1), 1, 4E-5, 2E-7),
-                new SpotLight(new Color(300, 180, 180), //
-                        new Point3D(120, -200, 500), new Vector(-1, 1, 1), 1, 4E-5, 2E-7)
-
-        );
-
-        ImageWriter imageWriter = new ImageWriter("BVH test", 200, 200, 600, 600);
-        Render render = new Render(imageWriter, scene);
-
-        render.renderImage();
-        render.writeToImage();
-
-    }
-
     /**
      * test flatten function from geometries
      */
@@ -143,9 +118,4 @@ public class BoundingValuesHierarchyTests {
         assertEquals("build virtual boxes hierarchy test",expected,geometries);
     }
 
-
-    @Test
-    public void getIntersectionBoxesTest(){
-
-    }
 }

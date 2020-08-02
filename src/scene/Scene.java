@@ -15,12 +15,33 @@ import java.util.List;
 public class Scene {
 
     //fields
+    /**
+     * name of scene
+     */
     private String _name;
+    /**
+     * background color
+     */
     private Color _background;
+    /**
+     * ambient light
+     */
     private AmbientLight _ambientLight;
+    /**
+     * list of geometries in scene
+     */
     private Geometries _geometries;
+    /**
+     * scene's camera
+     */
     private Camera _camera;
+    /**
+     * distance of view plane from camera
+     */
     private double _distance;
+    /**
+     * light sources in scene
+     */
     private List<LightSource> _lights;
 
     /**

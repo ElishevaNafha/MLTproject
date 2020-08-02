@@ -49,6 +49,9 @@ public class RenderTest {
         render.writeToImage();
     }
 
+    /**
+     * tests getClosestPoint
+     */
     @Test
     public void testGetClosestPoint() {
         Ray ray = new Ray(new Point3D(0,0,0), new Vector(0,0,1));

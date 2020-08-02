@@ -1,3 +1,5 @@
+package renderer;
+
 import elements.Camera;
 import geometries.*;
 import org.junit.Test;
@@ -7,10 +9,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
- * Testing integration of different functions
+ * Testing integration of find intersections and construct ray through pixel
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-public class integrationTests {
+public class findIntersectionConstructRayThroughPixelTests {
     /**
      * Test method for
      * integration of findIntersections and constructRayThroughPixel for sphere.

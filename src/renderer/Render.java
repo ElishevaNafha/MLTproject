@@ -27,8 +27,17 @@ public class Render {
     private static final double SAMPLE_RAYS_CIRCLE_RADIUS = 10;
 
     //fields
+    /**
+     * the render's image writer
+     */
     private ImageWriter _imageWriter;
+    /**
+     * scene to render
+     */
     private Scene _scene;
+    /**
+     * amount of sample rays to use for image improvements
+     */
     private int _numSampleRays;
 
     /**
@@ -54,6 +63,10 @@ public class Render {
         _numSampleRays = numSampleRays;
     }
 
+
+    /**
+     * renders the image
+     */
     public void renderImage() {
 
         // calculation parameters
@@ -314,7 +327,7 @@ public class Render {
     }
 
     /**
-     * checks how shaded a point is
+     * checks how much of the light reaching the point from a light source is blocked by other bodies
      * @param light current light source
      * @param l vector from light source to point
      * @param n normal to geometry from point
@@ -340,6 +353,7 @@ public class Render {
     }
 
     /**
+     * calculates ray that is reflected from a point on a geometry
      * @param n normal to geometry form point
      * @param point
      * @param ray ray from camera to point
@@ -351,6 +365,7 @@ public class Render {
     }
 
     /**
+     * calculates ray that is refracted from a point on a geometry
      * @param point
      * @param ray ray from camera to point
      * @return refracted ray

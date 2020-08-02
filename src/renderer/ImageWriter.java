@@ -16,13 +16,33 @@ import javax.imageio.stream.*;
  * @author Dan
  */
 public class ImageWriter {
-    private double _imageWidth, _imageHeight;
-    private int _nX, _nY;
+    /**
+     * width of image
+     */
+    private double _imageWidth;
+    /**
+     * height of image
+     */
+    private double _imageHeight;
+    /**
+     * amount of pixels on the x axis
+     */
+    private int _nX;
+    /**
+     * amount of pixels on the y axis
+     */
+    private int _nY;
 
     private final String PROJECT_PATH = System.getProperty("user.dir");
 
+    /**
+     * the image
+     */
     private BufferedImage _image;
 
+    /**
+     * image name
+     */
     private String _imageName;
 
     // ***************** Constructors ********************** //

@@ -8,6 +8,9 @@ import static org.junit.Assert.*;
 
 public class ImageWriterTest {
 
+    /**
+     * tests write pixel
+     */
     @Test
     public void writePixel() {
         ImageWriter imageWriter = new ImageWriter("image writer test", 1600, 1000, 800, 500);
