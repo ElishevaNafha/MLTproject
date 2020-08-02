@@ -13,7 +13,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon extends Geometry {
+public class Polygon extends Geometry{
     /**
      * List of polygon's vertices
      */
@@ -167,6 +167,7 @@ public class Polygon extends Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+        createVirtualBox();
     }
 
     //getters
@@ -259,5 +260,37 @@ public class Polygon extends Geometry {
             return intersection;
         }
         return null;
+    }
+
+    @Override
+    public void createVirtualBox() {
+        VirtualBox virtualBox = new VirtualBox();
+        List<Double> xVals = new ArrayList<>();
+        List<Double> yVals = new ArrayList<>();
+        List<Double> zVals = new ArrayList<>();
+        for (Point3D vertex: _vertices) {
+            xVals.add(vertex.getX().get());
+            yVals.add(vertex.getY().get());
+            zVals.add(vertex.getZ().get());
+        }
+        virtualBox.set_lowX(new Coordinate(Collections.min(xVals)));
+        virtualBox.set_lowY(new Coordinate(Collections.min(yVals)));
+        virtualBox.set_lowZ(new Coordinate(Collections.min(zVals)));
+        virtualBox.set_highX(new Coordinate(Collections.max(xVals)));
+        virtualBox.set_highY(new Coordinate(Collections.max(yVals)));
+        virtualBox.set_highZ(new Coordinate(Collections.max(zVals)));
+        _virtualBox = virtualBox;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Polygon)) return false;
+        for(int i = 0; i < _vertices.size(); i++) {
+            if (!(_vertices.get(i).equals(((Polygon) obj)._vertices.get(i))))
+                return false;
+        }
+        return true;
     }
 }

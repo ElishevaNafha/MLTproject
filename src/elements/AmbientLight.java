@@ -8,7 +8,6 @@ import primitives.*;
  * */
 public class AmbientLight extends Light{
 
-    //fields
 
     /**
      * AmbientLight constructor

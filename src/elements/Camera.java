@@ -11,9 +11,21 @@ import static primitives.Util.alignZero;
 public class Camera {
 
     //fields
+    /**
+     * camera's location
+     */
     private Point3D _location;
+    /**
+     * vector Vtowards
+     */
     private Vector _Vto;
+    /**
+     * vector Vup
+     */
     private Vector _Vup;
+    /**
+     * vector Vright
+     */
     private Vector _Vright;
 
     /**

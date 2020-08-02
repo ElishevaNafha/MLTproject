@@ -167,4 +167,18 @@ public class Plane extends Geometry {
         return intersection;
     }
 
+    @Override
+    public void createVirtualBox() {
+        //Plane is an infinite geometry and therefore doesn't have edges and can't have a virtual box
+        _virtualBox = null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Plane)) return false;
+        return (_point.equals(((Plane)obj)._point) && (_normal.equals(((Plane)obj)._normal)));
+    }
+
 }

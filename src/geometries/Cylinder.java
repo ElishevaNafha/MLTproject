@@ -6,10 +6,16 @@ import java.util.List;
 
 /**
  * Cylinder class represents a cylinder in 3D Cartesian coordinate system
+ *
+ * Note: this class has been abandoned around step 4 so it was not updated like other geometries
+ *
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class Cylinder extends Tube{
     //fields
+    /**
+     * cylinder's height
+     */
     protected double _height;
 
     /**
@@ -56,7 +62,9 @@ public class Cylinder extends Tube{
         //else, the point is on the middle
         return super.getNormal(point3D);
     }
+
     @Override
     public List<GeoPoint> findIntersections(Ray ray) {
-        return null;}
+        return null;
+    }
 }

@@ -8,6 +8,9 @@ import primitives.Color;
  */
 public abstract class Light {
     //fields
+    /**
+     * light's intensity
+     */
     protected Color _intensity;
 
     //constructors

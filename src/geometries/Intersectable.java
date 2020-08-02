@@ -7,13 +7,34 @@ import java.util.List;
  * Intersectable interface represents geometries that can be intersected with rays
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-public interface Intersectable {
+public abstract class Intersectable {
+
+    /**
+     * A virtual box surrounding the intersectable object
+     */
+    protected VirtualBox _virtualBox;
+
+    /**
+     * create virtual box around the intersectable and assigns it to virtualBox
+     */
+    abstract protected void createVirtualBox();
+
+    /**
+     * getter for virtualBox
+     * @return virtualBox
+     */
+    public VirtualBox getVirtualBox() {
+        if (_virtualBox == null)
+            createVirtualBox();
+        return _virtualBox;
+    }
+
     /**
      * Finds all intersections between the intersectable and a given ray
      * @param ray the ray that intersects the intersectable
      * @return a list of all found intersections
      */
-    List<GeoPoint> findIntersections(Ray ray);
+    abstract List<GeoPoint> findIntersections(Ray ray);
 
     /**
      * class GeoPoint represents a point with the geometry it is part of

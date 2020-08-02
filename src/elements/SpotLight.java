@@ -10,6 +10,9 @@ import primitives.Vector;
  */
 public class SpotLight extends PointLight {
     //fields
+    /**
+     * light's direction
+     */
     Vector _direction;
 
     //constructors
@@ -29,10 +32,6 @@ public class SpotLight extends PointLight {
     }
 
     //functions
-    /**
-     * @param p the point for which the intensity is being calculated
-     * @return intensity of light source at point p
-     */
     @Override
     public Color getIntensity(Point3D p) {
         Double d = _direction.dotProduct(getL(p));

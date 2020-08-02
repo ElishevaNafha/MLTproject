@@ -1,5 +1,8 @@
 package primitives;
 
+/**
+ * Class material represents materials
+ */
 public class Material {
     //fields
     double _kD; //diffusion factor
@@ -13,9 +16,9 @@ public class Material {
     //constructors
     /**
      * constructor for material
-     * @param _kD
-     * @param _kS
-     * @param _nShininess
+     * @param _kD diffusion factor
+     * @param _kS specular factor
+     * @param _nShininess shininess factor
      */
     public Material(double _kD, double _kS, int _nShininess) {
         this(_kD,_kS,_nShininess,0,0);

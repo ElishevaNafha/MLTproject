@@ -52,4 +52,9 @@ public class Tube extends RadialGeometry {
     public List<GeoPoint> findIntersections(Ray ray) {
         return null;
     }
+
+    @Override
+    public void createVirtualBox() {
+        _virtualBox = null;
+    }
 }

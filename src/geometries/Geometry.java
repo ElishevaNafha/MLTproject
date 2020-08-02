@@ -6,7 +6,7 @@ import primitives.*;
  * Geometry interface represents a geometry in 3D Cartesian coordinate system
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-public abstract class Geometry implements Intersectable {
+public abstract class Geometry extends Intersectable {
 
     //fields
     protected Color _emission;

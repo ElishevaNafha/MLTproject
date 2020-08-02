@@ -1,8 +1,12 @@
 package geometries;
 
 import primitives.Color;
+import primitives.Coordinate;
 import primitives.Material;
 import primitives.Ray;
+
+import static primitives.Util.isZero;
+
 /**
  * RadialGeometry class represents 3d shapes that are based on a radius
  * @author Eliana Rabinowitz and Elisheva Nafha
@@ -56,5 +60,13 @@ public abstract class RadialGeometry extends Geometry{
      */
     public double getRadius() {
         return _radius;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof RadialGeometry)) return false;
+        return isZero(_radius - ((RadialGeometry)obj)._radius);
     }
 }

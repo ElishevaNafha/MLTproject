@@ -34,6 +34,12 @@ public class Ray {
         _vector = vector;
     }
 
+    /**
+     * Ray constructor receiving a start point a direction vector a a normal
+     * @param head
+     * @param direction
+     * @param normal
+     */
     public Ray(Point3D head, Vector direction, Vector normal){
         Vector delta = normal.scale(direction.dotProduct(normal) > 0 ? DELTA : - DELTA);
         _startpoint = head.add(delta);

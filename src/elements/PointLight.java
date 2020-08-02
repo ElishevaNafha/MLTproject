@@ -5,12 +5,18 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * PointLight class models omni-directional point source (such as a bulb)
+ * PointLight class models omnidirectional point source (such as a bulb)
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class PointLight extends Light implements LightSource {
     //fields
+    /**
+     * light's position
+     */
     protected Point3D _position;
+    /**
+     * light's reduction factors kC, kQ, kL
+     */
     protected double _kC, _kQ, _kL;
 
     //constructors
@@ -31,10 +37,6 @@ public class PointLight extends Light implements LightSource {
         _kQ = kQ;
     }
 
-    /**
-     * @param p the point for which the intensity is being calculated
-     * @return intensity of light source at point p
-     */
     @Override
     public Color getIntensity(Point3D p) {
         double distance = p.distance(_position);
@@ -42,10 +44,6 @@ public class PointLight extends Light implements LightSource {
         return _intensity.scale(attenuation);
     }
 
-    /**
-     * @param p
-     * @return vector from light source to point p
-     */
     @Override
     public Vector getL(Point3D p) {
         Vector L = new Vector(p.subtract(_position));

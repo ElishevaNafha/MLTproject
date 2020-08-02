@@ -127,11 +127,11 @@ public class ReflectionRefractionTests {
                 new Plane(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
                         new Point3D(150, 0,0), new Vector(-1,0,0)),
                 // blue transparent sphere
-                new Sphere(new Color(java.awt.Color.BLUE), new Material(0.2, 0.2, 30, 0.6, 0), // )
+                new Sphere(new Color(java.awt.Color.BLACK), new Material(0.2, 0.6, 30, 0.5, 0), // )
                         30, new Point3D(70, 70, 700)),
                 // red sphere
-                new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0.3, 0), // )
-                        20, new Point3D(30, 80, 550)),
+                new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0, 0), // )
+                        20, new Point3D(-10, 80, 700)),
                 // red sphere
                 new Sphere(new Color(new java.awt.Color(160,160,0)), new Material(0.2, 0.2, 30, 0, 0), // )
                         10, new Point3D(-62, 90, 480)),
@@ -139,7 +139,7 @@ public class ReflectionRefractionTests {
                 new Sphere(new Color(new java.awt.Color(160,50,0)), new Material(0.2, 0.2, 30, 0.4, 0), // )
                         5, new Point3D(-54, 95, 450)),
                 // front triangle pyramid
-                new Triangle(new Color(new java.awt.Color(100,130,100)), new Material(0.1, 0.7, 10, 0, 0),
+                new Triangle(new Color(new java.awt.Color(100,130,100)), new Material(0.1, 0.7, 10, 0.4, 0),
                         new Point3D(-50, 100, 500), new Point3D(50, 100, 600), new Point3D(-20, 0, 700)),
                 // left side triangle pyramid
                 new Triangle(new Color(new java.awt.Color(100,130,100)), new Material(0.1, 0.7, 10, 0, 0),

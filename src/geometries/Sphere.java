@@ -3,9 +3,7 @@ package geometries;
 import primitives.*;
 import primitives.Color;
 import primitives.Vector;
-import static java.lang.System.out;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -16,7 +14,7 @@ import static primitives.Util.isZero;
  * Sphere class represents a sphere in 3D Cartesian coordinate system
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-public class Sphere extends RadialGeometry {
+public class Sphere extends RadialGeometry{
     //fields
     Point3D _center;
 
@@ -29,6 +27,7 @@ public class Sphere extends RadialGeometry {
     public Sphere(double radius, Point3D center){
         super(radius);
         _center = center;
+        createVirtualBox();
     }
 
     /**
@@ -40,6 +39,7 @@ public class Sphere extends RadialGeometry {
     public Sphere(Color emission, double radius, Point3D center){
         super(emission,radius);
         _center = center;
+        createVirtualBox();
     }
 
     /**
@@ -52,6 +52,7 @@ public class Sphere extends RadialGeometry {
     public Sphere(Color emission, Material material, double radius, Point3D center){
         super(material, emission, radius);
         _center = center;
+        createVirtualBox();
     }
 
     /**
@@ -135,4 +136,22 @@ public class Sphere extends RadialGeometry {
                 return null;
             return intersections;
         }
+
+    @Override
+    public void createVirtualBox() {
+        _virtualBox = new VirtualBox(new Coordinate(_center.getX().get()-_radius),
+                new Coordinate(_center.getX().get()+_radius),
+                new Coordinate(_center.getY().get()-_radius),
+                new Coordinate(_center.getY().get()+_radius),
+                new Coordinate(_center.getZ().get()-_radius),
+                new Coordinate(_center.getZ().get()+_radius));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Sphere)) return false;
+        return (super.equals(obj) && _center.equals(((Sphere)obj)._center));
+    }
+}

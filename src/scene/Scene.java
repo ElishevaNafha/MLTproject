@@ -133,6 +133,14 @@ public class Scene {
     }
 
     /**
+     * add a list of geometries to the scene's geometries
+     * @param geometries new geometries
+     */
+    public void addGeometries(List<Intersectable> geometries){
+        _geometries.add(geometries);
+    }
+
+    /**
      * adds lights to scene's list of light sources
      * @param lights lights to add
      */
@@ -140,5 +148,12 @@ public class Scene {
         for (LightSource light:lights) {
             _lights.add(light);
         }
+    }
+
+    /**
+     * build a virtual boxes hierarchy in geometries
+     */
+    public void buildVirtualBoxesHierarchy() {
+        _geometries.buildVirtualBoxesHierarchy();
     }
 }
