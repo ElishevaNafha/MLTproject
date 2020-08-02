@@ -27,8 +27,8 @@ public class Render {
     private static final double SAMPLE_RAYS_CIRCLE_RADIUS = 10;
 
     //multithreading stuff
-    private int _threads = 1;
-    private final int SPARE_THREADS = 0;
+    private int _threads = 3;
+    private final int SPARE_THREADS = 2;
     private boolean _print = false;
     //fields
     /**
@@ -65,6 +65,7 @@ public class Render {
         _imageWriter = imageWriter;
         _scene = scene;
         _numSampleRays = numSampleRays;
+        _scene.buildVirtualBoxesHierarchy();
     }
 
 
@@ -84,20 +85,6 @@ public class Render {
         double distance = _scene.getDistance();
 
         final Pixel thePixel = new Pixel(nY, nX);
-     /*   for (int i = 0; i < nY; i++){
-            for (int j = 0; j < nX; j++){
-                Ray ray = camera.constructRayThroughPixel(nX, nY, j, i, distance, width, height);
-
-                // find closest intersection
-                GeoPoint closestPoint = getClosestPoint(ray);
-
-                // if no intersections found after view screen, write as background
-                if (closestPoint == null)
-                    _imageWriter.writePixel(j, i, background);
-                else
-                    _imageWriter.writePixel(j, i, calcColor(closestPoint, ray).getColor());
-            }
-        }*/
         // Generate threads
         Thread[] threads = new Thread[_threads];
         for (int i = _threads - 1; i >= 0; --i) {
@@ -139,7 +126,7 @@ public class Render {
      * @return closest intersection to ray's start point
      */
     private GeoPoint findClosestIntersection(Ray ray){
-        List<GeoPoint> intersectionPoints = _scene.getGeometries().findIntersections(ray);
+        List<GeoPoint> intersectionPoints = _scene.getGeometries().getIntersectionBoxes(ray).findIntersections(ray);
         GeoPoint closestPoint = null;
         double distance = Double.MAX_VALUE;
         double tempDistance;
