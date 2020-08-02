@@ -45,10 +45,10 @@ public class GlossySurfaceDiffuseGlassTest {
                 // red sphere
                 new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0, 0), // )
                         15, new Point3D(30, 85, 550)),
-                //new Polygon(new Material(0.3, 0.2, 30, 1, 0, 0,100), Color.BLACK,
-                  //      new Point3D(30, 100, 500), new Point3D(70, 100, 500), new Point3D(70, 20, 500), new Point3D(30, 20, 500)),
-                new Polygon(new Material(0.05, 0.9, 30, 0, 1, 60,0), Color.BLACK,
-                        new Point3D(-30, 100, 550), new Point3D(130, 100, 920), new Point3D(130, 20, 920), new Point3D(-30, 20, 550))
+                new Polygon(new Material(0.3, 0.2, 30, 1, 1, 100,100), Color.BLACK,
+                        new Point3D(30, 100, 600), new Point3D(70, 100, 600), new Point3D(70, 20, 600), new Point3D(30, 20, 600))
+                //new Polygon(new Material(0.05, 0.9, 30, 0, 1, 60,0), Color.BLACK,
+                  //      new Point3D(-30, 100, 550), new Point3D(130, 100, 920), new Point3D(130, 20, 920), new Point3D(-30, 20, 550))
 
         // front triangle pyramid
                 //new Triangle(new Color(new java.awt.Color(100,130,100)), new Material(0.1, 0.7, 10, 0, 0),
@@ -71,7 +71,7 @@ public class GlossySurfaceDiffuseGlassTest {
         );
 
         ImageWriter imageWriter = new ImageWriter("GlossyDiffusiveTest", 200, 200, 600, 600);
-        Render render = new Render(imageWriter, scene);
+        Render render = new Render(imageWriter, scene, 300);
 
         render.renderImage();
         render.writeToImage();

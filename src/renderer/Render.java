@@ -24,12 +24,12 @@ public class Render {
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
     private static final int MAX_GENERATED_RAYS_FACTOR = 10;
-    private static final int NUM_SAMPLE_RAYS = 300;
-    private static final double RADIUS = 10;
+    private static final double SAMPLE_RAYS_CIRCLE_RADIUS = 10;
 
     //fields
     private ImageWriter _imageWriter;
     private Scene _scene;
+    private int _numSampleRays;
 
     /**
      * Render constructor
@@ -38,8 +38,20 @@ public class Render {
      * @param scene scene to render
      */
     public Render(ImageWriter imageWriter, Scene scene) {
+        this(imageWriter, scene, 1);
+    }
+
+    /**
+     * Render constructor
+     *
+     * @param imageWriter render's image writer
+     * @param scene scene to render
+     * @param numSampleRays number of sample rays to generate for beams of rays
+     */
+    public Render(ImageWriter imageWriter, Scene scene, int numSampleRays) {
         _imageWriter = imageWriter;
         _scene = scene;
+        _numSampleRays = numSampleRays;
     }
 
     public void renderImage() {
@@ -172,7 +184,7 @@ public class Render {
             Ray reflectedRay = getReflectedRay(n, geopoint.point, inRay);
             GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
             if (reflectedPoint != null)
-                color = color.add(calcSampleRays(reflectedRay, RADIUS, geopoint.geometry.getMaterial().getKGS(),
+                color = color.add(calcSampleRays(reflectedRay, SAMPLE_RAYS_CIRCLE_RADIUS, geopoint.geometry.getMaterial().getKGS(),
                         level - 1, kkr).scale(kr));
         }
 
@@ -184,7 +196,7 @@ public class Render {
                 if(geopoint.geometry.getMaterial().getKGS()==0){
 
                 }
-                color = color.add(calcSampleRays(refractedRay, RADIUS, geopoint.geometry.getMaterial().getKDG(),
+                color = color.add(calcSampleRays(refractedRay, SAMPLE_RAYS_CIRCLE_RADIUS, geopoint.geometry.getMaterial().getKDG(),
                         level - 1, kkt).scale(kt));
             }
         }
@@ -235,7 +247,7 @@ public class Render {
         if (distance == 0)
             return total;
         // if NUM_SAMPLE_RAYS rays
-        return total.reduce(NUM_SAMPLE_RAYS+1);
+        return total.reduce(_numSampleRays+1);
     }
 
     /**
@@ -390,7 +402,7 @@ public class Render {
         Vector tempVector;
 
         // generate rays until numRays is reached or max number of trials reached
-        while ((numSampleRaysCurrent < NUM_SAMPLE_RAYS) && (numRaysCurrent < MAX_GENERATED_RAYS_FACTOR * NUM_SAMPLE_RAYS)){
+        while ((numSampleRaysCurrent < _numSampleRays) && (numRaysCurrent < MAX_GENERATED_RAYS_FACTOR * _numSampleRays)){
             // generate random coordinates on the square surrounding the circle (from 0 to 2 * radius)
             x = Math.random() * radius * 2;
             y = Math.random() * radius * 2;
