@@ -2,6 +2,7 @@ package renderer;
 
 import elements.AmbientLight;
 import elements.Camera;
+import elements.PointLight;
 import elements.SpotLight;
 import geometries.Plane;
 import geometries.Polygon;
@@ -72,17 +73,18 @@ public class FinalPicture {
                 //1700
                 new Polygon(new Material(0.1, 0.7, 10, 0, 1,0,0), new Color(new java.awt.Color(0,0,0)),
                         new Point3D(0, 100, 1700), new Point3D(100, 100, 1700), new Point3D(100, -100, 1700), new Point3D(0, -100, 1700)), //, new Point3D(150, -100, 700)
-                new Polygon(new Material(0.1, 0.7, 10, 1, 0,0,200), new Color(new java.awt.Color(50,50,50)),
-                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, -10, 440), new Point3D(-100, -10, 440)) //, new Point3D(150, -100, 700)
+                new Polygon(new Material(0.1, 0.7, 10, 1, 0,0,400), new Color(new java.awt.Color(50,50,50)),
+                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 10, 440), new Point3D(-100, 10, 440)) //, new Point3D(150, -100, 700)
 
         );
 
         scene.addLights(
-                new SpotLight(new Color(220, 220, 150), //
+                new SpotLight(new Color(180, 180, 100), //
                         new Point3D(120, -100, 0), new Vector(-1, 1, -1), 1, 4E-5, 2E-7),
-                new SpotLight(new Color(300, 180, 180), //
-                        new Point3D(120, -200, 500), new Vector(-1, 1, 1), 1, 4E-5, 2E-7)
-
+                new SpotLight(new Color(250, 140, 140), //
+                        new Point3D(120, -200, 500), new Vector(-1, 1, 1), 1, 4E-5, 2E-7),
+                new PointLight(new Color(70, 120, 80), //
+                        new Point3D(-100, -80, 300), 1, 4E-3, 6E-5)
         );
 
         ImageWriter imageWriter = new ImageWriter("FinalPicture", 200, 200, 600, 600);
