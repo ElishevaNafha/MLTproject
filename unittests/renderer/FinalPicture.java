@@ -32,16 +32,17 @@ public class FinalPicture {
 
         scene.addGeometries(
                 //floor
-                //new Plane(new Material(0.5,0.5,60, 0, 0.6,30,0), new Color(new java.awt.Color(70,50,50)),
-                  //      new Point3D(0, 100,0), new Vector(0,-1,0)),
-                new Polygon(new Material(0.5,0.5,60, 0, 0.6,0,0), new Color(new java.awt.Color(70,50,50)),
-                        new Point3D(-500,100,-100), new Point3D(-500,100,5000), new Point3D(150, 100, 5000), new Point3D(150, 100, -100)) ,
-                // front wall
-                new Plane(new Material(0.5,0.5,60, 0,0), new Color(new java.awt.Color(120,120,120)),
-                        new Point3D(0, 0,5000), new Vector(0,0,-1)),
+                new Polygon(new Material(0.5,0.5,60, 0, 0.6), new Color(new java.awt.Color(70,50,50)),
+                        new Point3D(-600,100,-100), new Point3D(-600,100,5000), new Point3D(150, 100, 5000), new Point3D(150, 100, -100)) ,
+                // back wall
+                new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
+                        new Point3D(-600,100,5000), new Point3D(-600,-600,5000), new Point3D(150, -600, 5000), new Point3D(150, 100, 5000)) ,
                 // side wall
-                new Plane(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
-                        new Point3D(150, 0,0), new Vector(-1,0,0)),
+                new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
+                        new Point3D(150,100,5000), new Point3D(150,-600,5000), new Point3D(150, -600, -100), new Point3D(150, 100, -100)),
+                // front wall
+                new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
+                        new Point3D(-600,100,-1), new Point3D(-600,-600,-1), new Point3D(150, -600, -1), new Point3D(150, 100, -1)) ,
                 // blue transparent sphere
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.2, 0.2, 30, 0.6, 0), // )
                         30, new Point3D(70, 70, 700)),
@@ -70,9 +71,10 @@ public class FinalPicture {
                 new Polygon(new Material(0.1, 0.7, 10, 0, 0,0,0), new Color(new java.awt.Color(55, 74, 55)),
                         new Point3D(-130, 99.9, 1100), new Point3D(-50, 99.9, 500), new Point3D(50, 99.9, 600), new Point3D(-30, 99.9, 1200)),
 
-                //1700
-                new Polygon(new Material(0.1, 0.7, 10, 0, 1,0,0), new Color(new java.awt.Color(0,0,0)),
+                //mirror polygon
+                new Polygon(new Material(0.1, 0.7, 10, 0, 1,1700,0), new Color(new java.awt.Color(0,0,0)),
                         new Point3D(0, 100, 1700), new Point3D(100, 100, 1700), new Point3D(100, -100, 1700), new Point3D(0, -100, 1700)), //, new Point3D(150, -100, 700)
+                //ice polygon
                 new Polygon(new Material(0.1, 0.7, 10, 1, 0,0,400), new Color(new java.awt.Color(50,50,50)),
                         new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 10, 440), new Point3D(-100, 10, 440)) //, new Point3D(150, -100, 700)
 
