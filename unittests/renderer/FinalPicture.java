@@ -27,14 +27,14 @@ public class FinalPicture {
         Scene scene = new Scene("Test scene");
         scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
         scene.setDistance(1000);
-        scene.setBackground(Color.BLACK);
+        scene.setBackground(new Color(new java.awt.Color(120,120,120)));
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
         scene.addGeometries(
                 //floor
                 new Polygon(new Material(0.5,0.5,60, 0, 0.6), new Color(new java.awt.Color(70,50,50)),
                         new Point3D(-600,100,-100), new Point3D(-600,100,5000), new Point3D(150, 100, 5000), new Point3D(150, 100, -100)) ,
-                // back wall
+              /*  // back wall
                 new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
                         new Point3D(-600,100,5000), new Point3D(-600,-600,5000), new Point3D(150, -600, 5000), new Point3D(150, 100, 5000)) ,
                 // side wall
@@ -42,7 +42,7 @@ public class FinalPicture {
                         new Point3D(150,100,5000), new Point3D(150,-600,5000), new Point3D(150, -600, -100), new Point3D(150, 100, -100)),
                 // front wall
                 new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
-                        new Point3D(-600,100,-1), new Point3D(-600,-600,-1), new Point3D(150, -600, -1), new Point3D(150, 100, -1)) ,
+                        new Point3D(-600,100,-1), new Point3D(-600,-600,-1), new Point3D(150, -600, -1), new Point3D(150, 100, -1)) ,*/
                 // blue transparent sphere
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.2, 0.2, 30, 0.6, 0), // )
                         30, new Point3D(70, 70, 700)),
@@ -76,7 +76,7 @@ public class FinalPicture {
                         new Point3D(0, 100, 1700), new Point3D(100, 100, 1700), new Point3D(100, -100, 1700), new Point3D(0, -100, 1700)), //, new Point3D(150, -100, 700)
                 //ice polygon
                 new Polygon(new Material(0.1, 0.7, 10, 1, 0,0,400), new Color(new java.awt.Color(50,50,50)),
-                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 10, 440), new Point3D(-100, 10, 440)) //, new Point3D(150, -100, 700)
+                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 30, 440), new Point3D(-100, 30, 440)) //, new Point3D(150, -100, 700)
 
         );
 

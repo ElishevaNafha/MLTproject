@@ -66,6 +66,7 @@ public class Render {
         _scene = scene;
         _numSampleRays = numSampleRays;
         _scene.buildVirtualBoxesHierarchy();
+        System.out.println("hi");
     }
 
 
@@ -127,6 +128,7 @@ public class Render {
      */
     private GeoPoint findClosestIntersection(Ray ray){
         List<GeoPoint> intersectionPoints = _scene.getGeometries().getIntersectionBoxes(ray).findIntersections(ray);
+        //List<GeoPoint> intersectionPoints = _scene.getGeometries().findIntersections(ray);
         GeoPoint closestPoint = null;
         double distance = Double.MAX_VALUE;
         double tempDistance;
@@ -455,6 +457,7 @@ public class Render {
 
 
 
+    // multithreading stuff
     /**
      * Pixel is an internal helper class whose objects are associated with a Render object that
      * they are generated in scope of. It is used for multithreading in the Renderer and for follow up

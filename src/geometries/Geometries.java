@@ -96,7 +96,7 @@ public class Geometries extends Intersectable {
         // if ray intersects the virtual box, check intersections with inner boxes
         if (getVirtualBox().hasIntersection(ray)) {
 
-            // if there is only one geometry in the box (elementary box), return it's box
+            // if there is only one geometry in the box (elementary box), return its box
             if (_geometries.size() == 1) {
                 intersectionBoxes = _geometries;
             }
@@ -136,7 +136,7 @@ public class Geometries extends Intersectable {
      * splits the virtual box into two inner virtual boxes by splitting the geometries list.
      * the direction of the split (axis x, y, or z) is chosen to be the one that splits the geometries most equally.
      */
-    private void splitVirtualBox() {
+    public void splitVirtualBox() {
         double midX = (getVirtualBox().get_highX().get() + getVirtualBox().get_lowX().get()) / 2;
         double midY = (getVirtualBox().get_highY().get() + getVirtualBox().get_lowY().get()) / 2;
         double midZ = (getVirtualBox().get_highZ().get() + getVirtualBox().get_lowZ().get()) / 2;

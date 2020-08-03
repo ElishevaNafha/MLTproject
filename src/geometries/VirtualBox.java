@@ -188,14 +188,7 @@ public class VirtualBox {
 
       if ((tmin > tzmax) || (tzmin > tmax))
             return false;
-
-        if (tzmin > tmin)
-            tmin = tzmin;
-
-        if (tzmax < tmax)
-            tmax = tzmax;
-
-        return true;
+      return true;
     }
 
     @Override

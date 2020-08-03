@@ -86,7 +86,7 @@ public class BoundingValuesHierarchyTests {
         assertEquals("flatten test", expected, geometries2);
     }*/
 
-/*    @Test
+    @Test
     public void splitVirtualBoxTest(){
         Triangle triangle1 = new Triangle(new Point3D(10,10,10), new Point3D(1,3,14), new Point3D(3,2,5));
         Triangle triangle2 = new Triangle(new Point3D(-10,-10,-10), new Point3D(-5,3,1), new Point3D(0,2,-5));
@@ -97,7 +97,7 @@ public class BoundingValuesHierarchyTests {
         Geometries expected = new Geometries(new Geometries(triangle1,triangle2), new Geometries(triangle3,triangle4));
         assertEquals("split virtual box test",expected,geometries);
     }
-    */
+
     @Test
     public void buildVirtualBoxesHierarchyTest(){
         // TC01:
