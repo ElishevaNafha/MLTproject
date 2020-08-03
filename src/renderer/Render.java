@@ -135,6 +135,7 @@ public class Render {
 
         if (intersectionPoints == null)
             return null;
+        int x;
 
         for (GeoPoint gp : intersectionPoints) {
             tempDistance = gp.point.distance(ray.getStartPoint());
