@@ -66,7 +66,6 @@ public class Render {
         _scene = scene;
         _numSampleRays = numSampleRays;
         _scene.buildVirtualBoxesHierarchy();
-        System.out.println("hi");
     }
 
 

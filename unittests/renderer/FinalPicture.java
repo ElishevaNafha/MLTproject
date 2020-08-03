@@ -4,16 +4,16 @@ import elements.AmbientLight;
 import elements.Camera;
 import elements.PointLight;
 import elements.SpotLight;
-import geometries.Plane;
-import geometries.Polygon;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import org.junit.Test;
 import primitives.Color;
 import primitives.Material;
 import primitives.Point3D;
 import primitives.Vector;
 import scene.Scene;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,32 +27,40 @@ public class FinalPicture {
         Scene scene = new Scene("Test scene");
         scene.setCamera(new Camera(new Point3D(0, 0, -1000), new Vector(0, 0, 1), new Vector(0, -1, 0)));
         scene.setDistance(1000);
-        scene.setBackground(new Color(new java.awt.Color(120,120,120)));
+        scene.setBackground(new Color(new java.awt.Color(70,50,50)));
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
+        /*List<Intersectable> nonce = new ArrayList<>();
+        for (int i = -600; i < 150; i+=50){
+            for (int j = -100; j < 5000; j += 100) {
+                nonce.add(new Polygon(new Material(0.5,0.5,60, 0, 0.6), new Color(new java.awt.Color(70,50,50)),
+                        new Point3D(i,100,j), new Point3D(i,100,j + 100), new Point3D(i + 50, 100, j + 100), new Point3D(i + 50, 100, j)));
+            }
+        }
+        scene.addGeometries(nonce);*/
         scene.addGeometries(
                 //floor
                 new Polygon(new Material(0.5,0.5,60, 0, 0.6), new Color(new java.awt.Color(70,50,50)),
                         new Point3D(-600,100,-100), new Point3D(-600,100,5000), new Point3D(150, 100, 5000), new Point3D(150, 100, -100)) ,
-              /*  // back wall
-                new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
+                // back wall
+                /*new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
                         new Point3D(-600,100,5000), new Point3D(-600,-600,5000), new Point3D(150, -600, 5000), new Point3D(150, 100, 5000)) ,
                 // side wall
                 new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
                         new Point3D(150,100,5000), new Point3D(150,-600,5000), new Point3D(150, -600, -100), new Point3D(150, 100, -100)),
                 // front wall
                 new Polygon(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(120,120,120)),
-                        new Point3D(-600,100,-1), new Point3D(-600,-600,-1), new Point3D(150, -600, -1), new Point3D(150, 100, -1)) ,*/
-                // blue transparent sphere
+                        new Point3D(-600,100,-1), new Point3D(-600,-600,-1), new Point3D(150, -600, -1), new Point3D(150, 100, -1)) ,
+                */// blue transparent sphere
                 new Sphere(new Color(java.awt.Color.BLUE), new Material(0.2, 0.2, 30, 0.6, 0), // )
                         30, new Point3D(70, 70, 700)),
-                // red sphere :( sorry :( :'( this one is very sad
+                // red sphere
                 new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0.3, 0), // )
                         20, new Point3D(30, 80, 550)),
-                // red sphere
+                // yellow sphere
                 new Sphere(new Color(new java.awt.Color(160,160,0)), new Material(0.2, 0.2, 30, 0, 0), // )
                         10, new Point3D(-62, 90, 480)),
-                // red sphere
+                // orange sphere
                 new Sphere(new Color(new java.awt.Color(160,50,0)), new Material(0.2, 0.2, 30, 0.4, 0), // )
                         5, new Point3D(-54, 95, 450)),
                 // front triangle pyramid
@@ -76,7 +84,7 @@ public class FinalPicture {
                         new Point3D(0, 100, 1700), new Point3D(100, 100, 1700), new Point3D(100, -100, 1700), new Point3D(0, -100, 1700)), //, new Point3D(150, -100, 700)
                 //ice polygon
                 new Polygon(new Material(0.1, 0.7, 10, 1, 0,0,400), new Color(new java.awt.Color(50,50,50)),
-                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 30, 440), new Point3D(-100, 30, 440)) //, new Point3D(150, -100, 700)
+                        new Point3D(-100, 100, 440), new Point3D(-62, 100, 440), new Point3D(-62, 10, 440), new Point3D(-100, 10, 440)) //, new Point3D(150, -100, 700)
 
         );
 

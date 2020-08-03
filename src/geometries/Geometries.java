@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Coordinate;
+import primitives.Point3D;
 import primitives.Ray;
 
 import javax.naming.OperationNotSupportedException;
@@ -81,6 +82,7 @@ public class Geometries extends Intersectable {
         // get a list of intersected boxes
         Geometries intersectionBoxes = new Geometries(getIntersectionBoxesList(ray));
         // add all unboxed geometries (infinite geometries)
+        int len = intersectionBoxes._geometries.size();
         intersectionBoxes.add( _virtualBox.get_infiniteGeometries());
         return intersectionBoxes;
     }
@@ -98,6 +100,8 @@ public class Geometries extends Intersectable {
 
             // if there is only one geometry in the box (elementary box), return its box
             if (_geometries.size() == 1) {
+                if ((ray.getStartPoint().equals(new Point3D(27.45, 55.35, 1699.9))/*) && (_virtualBox.get_highZ().equals(new Coordinate(440.0))*/))
+                    System.out.print("hi");
                 intersectionBoxes = _geometries;
             }
 
@@ -270,9 +274,9 @@ public class Geometries extends Intersectable {
 
     @Override
     protected void createVirtualBox() {
-        VirtualBox virtualBox = new VirtualBox(new Coordinate(Double.MAX_VALUE),new Coordinate(Double.MIN_VALUE),
-                new Coordinate(Double.MAX_VALUE),new Coordinate(Double.MIN_VALUE),
-                new Coordinate(Double.MAX_VALUE),new Coordinate(Double.MIN_VALUE));
+        VirtualBox virtualBox = new VirtualBox(new Coordinate(Double.MAX_VALUE),new Coordinate(-Double.MAX_VALUE),
+                new Coordinate(Double.MAX_VALUE),new Coordinate(-Double.MAX_VALUE),
+                new Coordinate(Double.MAX_VALUE),new Coordinate(-Double.MAX_VALUE));
         VirtualBox temp;
         boolean hasFinite = false;
         for (Intersectable geometry: _geometries) {
