@@ -16,7 +16,7 @@ import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
 /**
- * Render class is responsible of rendering a scene into an image.
+ * Render class is responsible for rendering a scene into an image.
  * @author Eliana Rabinowitz and Elisheva Nafha
  * */
 public class Render {
@@ -134,7 +134,6 @@ public class Render {
 
         if (intersectionPoints == null)
             return null;
-        int x;
 
         for (GeoPoint gp : intersectionPoints) {
             tempDistance = gp.point.distance(ray.getStartPoint());

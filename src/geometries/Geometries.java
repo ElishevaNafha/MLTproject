@@ -71,6 +71,11 @@ public class Geometries extends Intersectable {
         createVirtualBox();
     }
 
+    public void remove(Intersectable geometry){
+        _geometries.remove(geometry);
+        createVirtualBox();
+    }
+
     //bounding values hierarchy functions
 
     /**
@@ -100,8 +105,6 @@ public class Geometries extends Intersectable {
 
             // if there is only one geometry in the box (elementary box), return its box
             if (_geometries.size() == 1) {
-                if ((ray.getStartPoint().equals(new Point3D(27.45, 55.35, 1699.9))/*) && (_virtualBox.get_highZ().equals(new Coordinate(440.0))*/))
-                    System.out.print("hi");
                 intersectionBoxes = _geometries;
             }
 
@@ -111,6 +114,8 @@ public class Geometries extends Intersectable {
                 intersectionBoxes.addAll(((Geometries) _geometries.get(1)).getIntersectionBoxesList(ray));
             }
         }
+        if(intersectionBoxes.size()>8)
+            System.out.println("ytrgfrt");
         return intersectionBoxes;
     }
 
@@ -201,11 +206,11 @@ public class Geometries extends Intersectable {
         // in case the split created an empty box
         if (left._geometries.isEmpty()) {
             left.add(right._geometries.get(0));
-            right._geometries.remove(0);
+            right._geometries.remove(right._geometries.get(0));
         }
         if (right._geometries.isEmpty()) {
             right.add(left._geometries.get(0));
-            left._geometries.remove(0);
+            left.remove(left._geometries.get(0));
         }
 
         List<Geometries> geometries = new ArrayList<>();

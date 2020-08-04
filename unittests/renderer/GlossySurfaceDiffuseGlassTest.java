@@ -38,7 +38,7 @@ public class GlossySurfaceDiffuseGlassTest {
                 // red sphere
                 new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0, 0), // )
                         15, new Point3D(30, 85, 550)),
-                new Polygon(new Material(0.3, 0.2, 30, 1, 0, 0,100), Color.BLACK,
+                new Polygon(new Material(0.3, 0.2, 30, 1, 1, 100,100), Color.BLACK,
                         new Point3D(30, 100, 600), new Point3D(70, 100, 600), new Point3D(70, 20, 600), new Point3D(30, 20, 600))
                 //new Polygon(new Material(0.05, 0.9, 30, 0, 1, 60,0), Color.BLACK,
                   //      new Point3D(-30, 100, 550), new Point3D(130, 100, 920), new Point3D(130, 20, 920), new Point3D(-30, 20, 550))
@@ -68,7 +68,7 @@ public class GlossySurfaceDiffuseGlassTest {
 
         scene.addGeometries(
                 //floor
-                new Plane(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(70,50,50)),
+                new  Plane(new Material(0.5,0.5,60, 0, 0), new Color(new java.awt.Color(70,50,50)),
                         new Point3D(0, 100,0), new Vector(0,-1,0)),
                 new Sphere(new Color(java.awt.Color.blue), new Material(0.2, 0.2, 30, 0, 0, 30,30), // )
                         30, new Point3D(70, 70, 700)),
