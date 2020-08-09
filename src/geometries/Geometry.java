@@ -9,12 +9,18 @@ import primitives.*;
 public abstract class Geometry extends Intersectable {
 
     //fields
+    /**
+     * geometry's emission (color)
+     */
     protected Color _emission;
+    /**
+     * geometry's material
+     */
     protected Material _material;
 
     /**
      * Constructor for Geometry
-     * @param emission
+     * @param emission geometry's emission
      */
     public Geometry(Color emission) {
         _emission = emission;
@@ -31,8 +37,8 @@ public abstract class Geometry extends Intersectable {
 
     /**
      * Constructor for Geometry
-     * @param emission
-     * @param material
+     * @param emission geometry's emission
+     * @param material geometry's material
      */
     public Geometry(Color emission, Material material) {
         _emission = emission;

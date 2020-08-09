@@ -12,7 +12,7 @@ import static org.junit.Assert.fail;
  * Testing integration of find intersections and construct ray through pixel
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
-public class findIntersectionConstructRayThroughPixelTests {
+public class FindIntersectionConstructRayThroughPixelTests {
     /**
      * Test method for
      * integration of findIntersections and constructRayThroughPixel for sphere.

@@ -57,7 +57,7 @@ public class Point3D {
     /**
      * Copy constructor for Point3D
      *
-     * @param other
+     * @param other new Point3D
      */
     public Point3D(Point3D other) {
         _x = other._x;
@@ -91,21 +91,6 @@ public class Point3D {
      */
     public Coordinate getZ() {
         return _z;
-    }
-
-    //basic overrides
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof Point3D)) return false;
-        Point3D oth = (Point3D)obj;
-        return _x.equals(oth._x) && _y.equals(oth._y) && _z.equals(oth._z);
-    }
-
-    @Override
-    public String toString() {
-        return "(" + _x.toString() + "," + _y.toString() + "," + _z.toString() + ")";
     }
 
     //methods
@@ -152,5 +137,20 @@ public class Point3D {
      */
     public double distance(Point3D p){
         return Math.sqrt(distanceSquared(p));
+    }
+
+    //basic overrides
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Point3D)) return false;
+        Point3D oth = (Point3D)obj;
+        return _x.equals(oth._x) && _y.equals(oth._y) && _z.equals(oth._z);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + _x.toString() + "," + _y.toString() + "," + _z.toString() + ")";
     }
 }

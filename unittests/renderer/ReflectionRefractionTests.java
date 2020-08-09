@@ -18,7 +18,7 @@ import scene.Scene;
  * Tests for reflection and transparency functionality, test for partial shadows
  * (with transparency)
  *
- * @author dzilb
+ * @author dzilb, Eliana Rabinowitz and Elisheva Nafha
  *
  */
 public class ReflectionRefractionTests {
@@ -108,6 +108,9 @@ public class ReflectionRefractionTests {
         render.writeToImage();
     }
 
+    /**
+     * generate a complex picture that includes over 10 bodies
+     */
     @Test
     public void complexPicture(){
         Scene scene = new Scene("Test scene");
@@ -132,10 +135,10 @@ public class ReflectionRefractionTests {
                 // red sphere
                 new Sphere(new Color(java.awt.Color.red), new Material(0.2, 0.2, 30, 0, 0), // )
                         20, new Point3D(-10, 80, 700)),
-                // red sphere
+                // yellow sphere
                 new Sphere(new Color(new java.awt.Color(160,160,0)), new Material(0.2, 0.2, 30, 0, 0), // )
                         10, new Point3D(-62, 90, 480)),
-                // red sphere
+                // orange sphere
                 new Sphere(new Color(new java.awt.Color(160,50,0)), new Material(0.2, 0.2, 30, 0.4, 0), // )
                         5, new Point3D(-54, 95, 450)),
                 // front triangle pyramid

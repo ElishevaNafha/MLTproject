@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Elisheva Nafha and Eliana Rabinowitz
  */
-public class RenderTest {
+public class SecondRenderTests {
 
     /**
      * Produce a scene with basic 3D model and render it into a jpeg image with a

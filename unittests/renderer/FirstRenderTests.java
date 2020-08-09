@@ -10,11 +10,11 @@ import renderer.Render;
 import scene.Scene;
 
 /**
- * Test rendering abasic image
+ * Test rendering a basic image
  * 
  * @author Dan
  */
-public class RenderTests {
+public class FirstRenderTests {
 
     /**
      * Produce a scene with basic 3D model and render it into a jpeg image with a
@@ -43,7 +43,11 @@ public class RenderTests {
         render.printGrid(50, java.awt.Color.YELLOW);
         render.writeToImage();
     }
-    
+
+    /**
+     * Produce a scene with basic 3D model that includes multiple colors and render it into a jpeg image with a
+     * grid
+     */
     @Test
     public void basicRenderMultiColorTest() {
         Scene scene = new Scene("Test scene");

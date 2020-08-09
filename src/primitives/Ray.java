@@ -35,10 +35,11 @@ public class Ray {
     }
 
     /**
-     * Ray constructor receiving a start point a direction vector a a normal
-     * @param head
-     * @param direction
-     * @param normal
+     * Ray constructor receiving a start point, a direction vector and a normal<br>
+     * constructs a ray in direction vector that starts at head + (DELTA * normal)
+     * @param head ray's head
+     * @param direction ray's direction
+     * @param normal normal to the geometry 'head' is located on at 'head'
      */
     public Ray(Point3D head, Vector direction, Vector normal){
         Vector delta = normal.scale(direction.dotProduct(normal) > 0 ? DELTA : - DELTA);
@@ -49,7 +50,7 @@ public class Ray {
     /**
      * Copy constructor for Ray
      *
-     * @param other
+     * @param other new Ray
      */
     public Ray(Ray other) {
         _startpoint = other._startpoint;
@@ -75,6 +76,16 @@ public class Ray {
         return _vector;
     }
 
+    //methods
+    /**
+     * get a point on the ray at distance t from the start point
+     * @param t distance from start point
+     * @return point on the ray at distance t from the start point
+     */
+    public Point3D getPoint(double t){
+        return _startpoint.add(_vector.scale(t));
+    }
+
     //basic overrides
     @Override
     public boolean equals(Object obj) {
@@ -88,10 +99,5 @@ public class Ray {
     @Override
     public String toString() {
         return "starts at " + _startpoint.toString() + ", in direction " + _vector.toString();
-    }
-
-    //methods
-    public Point3D getPoint(double t){
-        return _startpoint.add(_vector.scale(t));
     }
 }

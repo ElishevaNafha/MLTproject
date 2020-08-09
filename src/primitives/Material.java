@@ -5,12 +5,33 @@ package primitives;
  */
 public class Material {
     //fields
-    double _kD; //diffusion factor
-    double _kS; //specular factor
-    double _kT; //transparency factor
-    double _kR; //reflective factor
-    double _kGS; //glossiness factor
-    double _kDG; //Diffusive glass factor
+    /**
+     * diffusion factor
+     */
+    double _kD;
+    /**
+     * specular factor
+     */
+    double _kS;
+    /**
+     * transparency factor
+     */
+    double _kT;
+    /**
+     * reflective factor
+     */
+    double _kR;
+    /**
+     * glossiness factor
+     */
+    double _kGS;
+    /**
+     * Diffusive glass factor
+     */
+    double _kDG;
+    /**
+     * shininess factor
+     */
     int _nShininess;
 
     //constructors

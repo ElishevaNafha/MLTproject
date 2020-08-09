@@ -63,7 +63,7 @@ public class Vector {
     /**
      * Copy constructor for Vector
      *
-     * @param other
+     * @param other new Vector
      */
     public Vector(Vector other) {
         _endpoint = other._endpoint;
@@ -77,21 +77,6 @@ public class Vector {
      */
     public Point3D getEndpoint() {
         return _endpoint;
-    }
-
-    //basic overrides
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof Vector)) return false;
-        Vector oth = (Vector)obj;
-        return _endpoint.equals(oth._endpoint);
-    }
-
-    @Override
-    public String toString() {
-        return _endpoint.toString();
     }
 
     //methods
@@ -194,5 +179,20 @@ public class Vector {
         Vector v = new Vector(this);
         v.normalize();
         return v;
+    }
+
+    //basic overrides
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Vector)) return false;
+        Vector oth = (Vector)obj;
+        return _endpoint.equals(oth._endpoint);
+    }
+
+    @Override
+    public String toString() {
+        return _endpoint.toString();
     }
 }

@@ -10,6 +10,9 @@ import java.util.List;
  */
 public class Tube extends RadialGeometry {
     //fields
+    /**
+     * tube's axis ray
+     */
     Ray _axisRay;
 
     /**

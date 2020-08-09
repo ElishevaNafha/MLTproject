@@ -38,12 +38,12 @@ public class Polygon extends Geometry{
      *                                  <li>The vertices are not in the same
      *                                  plane</li>
      *                                  <li>The order of vertices is not according
-     *                                  to edge path</li>[
+     *                                  to edge path</li>
      *
      *                                  <li>Three consequent vertices lay in the
      *                                  same line (180&#176; angle between two
-     *                                  consequent edges)
-     *                                  <li>The polygon is concave (not convex></li>
+     *                                  consequent edges)</li>
+     *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
     public Polygon(Point3D... vertices) {
@@ -65,12 +65,12 @@ public class Polygon extends Geometry{
      *                                  <li>The vertices are not in the same
      *                                  plane</li>
      *                                  <li>The order of vertices is not according
-     *                                  to edge path</li>[
+     *                                  to edge path</li>
      *
      *                                  <li>Three consequent vertices lay in the
      *                                  same line (180&#176; angle between two
-     *                                  consequent edges)
-     *                                  <li>The polygon is concave (not convex></li>
+     *                                  consequent edges)</li>
+     *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
     public Polygon(Color emission,Point3D... vertices) {
@@ -94,12 +94,12 @@ public class Polygon extends Geometry{
      *                                  <li>The vertices are not in the same
      *                                  plane</li>
      *                                  <li>The order of vertices is not according
-     *                                  to edge path</li>[
+     *                                  to edge path</li>
      *
      *                                  <li>Three consequent vertices lay in the
      *                                  same line (180&#176; angle between two
-     *                                  consequent edges)
-     *                                  <li>The polygon is concave (not convex></li>
+     *                                  consequent edges)</li>
+     *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
     public Polygon(Material material, Color emission,Point3D... vertices) {
@@ -121,12 +121,12 @@ public class Polygon extends Geometry{
      *                                  <li>The vertices are not in the same
      *                                  plane</li>
      *                                  <li>The order of vertices is not according
-     *                                  to edge path</li>[
+     *                                  to edge path</li>
      *
      *                                  <li>Three consequent vertices lay in the
      *                                  same line (180&#176; angle between two
-     *                                  consequent edges)
-     *                                  <li>The polygon is concave (not convex></li>
+     *                                  consequent edges)</li>
+     *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
     private void ctorsAssistant(Point3D... vertices){

@@ -33,6 +33,9 @@ public class ImageWriter {
      */
     private int _nY;
 
+    /**
+     * path to project (location for the image)
+     */
     private final String PROJECT_PATH = System.getProperty("user.dir");
 
     /**

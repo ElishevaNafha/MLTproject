@@ -16,6 +16,9 @@ import static primitives.Util.isZero;
  */
 public class Sphere extends RadialGeometry{
     //fields
+    /**
+     * sphere's center point
+     */
     Point3D _center;
 
     //constructors

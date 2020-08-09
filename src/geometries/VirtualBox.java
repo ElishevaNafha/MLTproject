@@ -15,7 +15,13 @@ import static primitives.Util.isZero;
  * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class VirtualBox {
+    /**
+     * virtual box's edges
+     */
     private Coordinate _lowX, _highX, _lowY, _highY, _lowZ, _highZ;
+    /**
+     * infinite geometries the box is responsible for
+     */
     private List<Intersectable> _infiniteGeometries;
 
     //constructors
@@ -30,12 +36,12 @@ public class VirtualBox {
 
     /**
      * Constructor for VirtualBox
-     * @param _lowX
-     * @param _highX
-     * @param _lowY
-     * @param _highY
-     * @param _lowZ
-     * @param _highZ
+     * @param _lowX box's low x value
+     * @param _highX box's high x value
+     * @param _lowY box's low y value
+     * @param _highY box's high y value
+     * @param _lowZ box's low z value
+     * @param _highZ box's high z value
      */
     public VirtualBox(Coordinate _lowX, Coordinate _highX, Coordinate _lowY, Coordinate _highY, Coordinate _lowZ, Coordinate _highZ) {
         this();
@@ -98,42 +104,42 @@ public class VirtualBox {
 
     /**
      * setter for lowX
-     * @param _lowX
+     * @param _lowX box's low x value
      */
     public void set_lowX(Coordinate _lowX) {
         this._lowX = _lowX;
     }
     /**
      * setter for highX
-     * @param _highX
+     * @param _highX box's high x value
      */
     public void set_highX(Coordinate _highX) {
         this._highX = _highX;
     }
     /**
      * setter for lowY
-     * @param _lowY
+     * @param _lowY box's low y value
      */
     public void set_lowY(Coordinate _lowY) {
         this._lowY = _lowY;
     }
     /**
      * setter for highY
-     * @param _highY
+     * @param _highY box's high y value
      */
     public void set_highY(Coordinate _highY) {
         this._highY = _highY;
     }
     /**
      * setter for lowZ
-     * @param _lowZ
+     * @param _lowZ box's low z value
      */
     public void set_lowZ(Coordinate _lowZ) {
         this._lowZ = _lowZ;
     }
     /**
      * setter for highZ
-     * @param _highZ
+     * @param _highZ box's high z value
      */
     public void set_highZ(Coordinate _highZ) {
         this._highZ = _highZ;
@@ -192,19 +198,6 @@ public class VirtualBox {
       return true;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof VirtualBox)) return false;
-        return (isZero(_lowX.get()-((VirtualBox)obj)._lowX.get()) &&
-                isZero(_lowY.get()-((VirtualBox)obj)._lowY.get()) &&
-                isZero(_lowZ.get()-((VirtualBox)obj)._lowZ.get()) &&
-                isZero(_highX.get()-((VirtualBox)obj)._highX.get()) &&
-                isZero(_highY.get()-((VirtualBox)obj)._highY.get()) &&
-                isZero(_highZ.get()-((VirtualBox)obj)._highZ.get()));
-    }
-
     /**
      * getter for infiniteGeometries
      * @return infiniteGeometries
@@ -227,5 +220,18 @@ public class VirtualBox {
      */
     public void addInfiniteGeometries(List<Intersectable> geometries){
         _infiniteGeometries.addAll(geometries);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof VirtualBox)) return false;
+        return (isZero(_lowX.get()-((VirtualBox)obj)._lowX.get()) &&
+                isZero(_lowY.get()-((VirtualBox)obj)._lowY.get()) &&
+                isZero(_lowZ.get()-((VirtualBox)obj)._lowZ.get()) &&
+                isZero(_highX.get()-((VirtualBox)obj)._highX.get()) &&
+                isZero(_highY.get()-((VirtualBox)obj)._highY.get()) &&
+                isZero(_highZ.get()-((VirtualBox)obj)._highZ.get()));
     }
 }

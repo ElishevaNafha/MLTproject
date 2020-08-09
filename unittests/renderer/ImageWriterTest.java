@@ -6,6 +6,10 @@ import java.awt.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * test imageWriter
+ * @author Eliana Rabinowitz and Elisheva Nafha
+ */
 public class ImageWriterTest {
 
     /**

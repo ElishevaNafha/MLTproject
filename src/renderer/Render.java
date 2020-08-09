@@ -21,14 +21,36 @@ import static primitives.Util.isZero;
  * */
 public class Render {
     //constants
+    /**
+     * max depth of recursion at the color calculation
+     */
     private static final int MAX_CALC_COLOR_LEVEL = 10;
+    /**
+     * min factor at the color calculation recursion levels
+     */
     private static final double MIN_CALC_COLOR_K = 0.001;
+    /**
+     * to make sure no infinite loops are created at the generation of rays beams, the generation stops whatsoever at
+     * numSampleRays * MAX_GENERATED_RAYS_FACTOR
+     */
     private static final int MAX_GENERATED_RAYS_FACTOR = 10;
+    /**
+     * radius of the circle used for the rays beams generation
+     */
     private static final double SAMPLE_RAYS_CIRCLE_RADIUS = 10;
 
     //multithreading stuff
+    /**
+     * number of active threads
+     */
     private int _threads = 3;
+    /**
+     * number of spare threads
+     */
     private final int SPARE_THREADS = 2;
+    /**
+     * determines whether to use debug print at the multithreading process
+     */
     private boolean _print = false;
     //fields
     /**
@@ -65,7 +87,7 @@ public class Render {
         _imageWriter = imageWriter;
         _scene = scene;
         _numSampleRays = numSampleRays;
-        _scene.buildVirtualBoxesHierarchy();
+        _scene.buildVirtualBoxesHierarchy(); // comment this line to run without bvh (one more line needs to be commented)
     }
 
 
@@ -126,6 +148,7 @@ public class Render {
      * @return closest intersection to ray's start point
      */
     private GeoPoint findClosestIntersection(Ray ray){
+        //to run without bvh, comment the next line and uncomment the line under it.
         List<GeoPoint> intersectionPoints = _scene.getGeometries().getIntersectionBoxes(ray).findIntersections(ray);
         //List<GeoPoint> intersectionPoints = _scene.getGeometries().findIntersections(ray);
         GeoPoint closestPoint = null;
@@ -147,7 +170,7 @@ public class Render {
     }
 
     /**
-     * get the closest intersection point on a ray from the camera to the view plane.
+     * get the closest intersection point on a ray from the camera to the view plane.<br>
      * returns the closest point behind the view plane; returns null if no point is found.
      * @param ray the ray to find intersections with
      * @return closest intersection point on the ray
@@ -372,7 +395,7 @@ public class Render {
     /**
      * calculates ray that is reflected from a point on a geometry
      * @param n normal to geometry form point
-     * @param point
+     * @param point point on the geometry
      * @param ray ray from camera to point
      * @return reflected ray
      */
@@ -383,7 +406,8 @@ public class Render {
 
     /**
      * calculates ray that is refracted from a point on a geometry
-     * @param point
+     * @param n normal to the geometry at point
+     * @param point point on the geometry
      * @param ray ray from camera to point
      * @return refracted ray
      */
@@ -460,7 +484,7 @@ public class Render {
     /**
      * Pixel is an internal helper class whose objects are associated with a Render object that
      * they are generated in scope of. It is used for multithreading in the Renderer and for follow up
-     * its progress.<br/>
+     * its progress.<br>
      * There is a main follow up object and several secondary objects - one in each thread.
      * @author Dan
      *
@@ -496,7 +520,7 @@ public class Render {
         /**
          * Internal function for thread-safe manipulating of main follow up Pixel object - this function is
          * critical section for all the threads, and main Pixel object data is the shared data of this critical
-         * section.<br/>
+         * section.<br>
          * The function provides next pixel number each call.
          * @param target target secondary Pixel object to copy the row/column of the next pixel
          * @return the progress percentage for follow up: if it is 0 - nothing to print, if it is -1 - the task is
@@ -554,7 +578,7 @@ public class Render {
      */
     public Render setMultithreading(int threads) {
         if (threads < 0)
-            throw new IllegalArgumentException("Multithreading patameter must be 0 or higher");
+            throw new IllegalArgumentException("Multithreading parameter must be 0 or higher");
         if (threads != 0)
             _threads = threads;
         else {

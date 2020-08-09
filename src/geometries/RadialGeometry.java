@@ -13,6 +13,9 @@ import static primitives.Util.isZero;
  */
 public abstract class RadialGeometry extends Geometry{
     //fields
+    /**
+     * geometry's radius
+     */
     protected double _radius;
 
     //constructors

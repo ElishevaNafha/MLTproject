@@ -52,6 +52,7 @@ public abstract class Intersectable {
             this.geometry = geometry;
             this.point = point;
         }
+
         //basic overrides
         @Override
         public boolean equals(Object obj) {

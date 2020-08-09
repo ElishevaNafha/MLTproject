@@ -13,6 +13,7 @@ import static org.junit.Assert.assertNull;
 
 /**
  * test class for bounding values hierarchy algorithm
+ * @author Eliana Rabinowitz and Elisheva Nafha
  */
 public class BoundingValuesHierarchyTests {
     /**
@@ -86,6 +87,9 @@ public class BoundingValuesHierarchyTests {
         assertEquals("flatten test", expected, geometries2);
     }*/
 
+    /**
+     * test box's splitting process
+     */
     @Test
     public void splitVirtualBoxTest(){
         Triangle triangle1 = new Triangle(new Point3D(10,10,10), new Point3D(1,3,14), new Point3D(3,2,5));
@@ -98,6 +102,9 @@ public class BoundingValuesHierarchyTests {
         assertEquals("split virtual box test",expected,geometries);
     }
 
+    /**
+     * test entire building process
+     */
     @Test
     public void buildVirtualBoxesHierarchyTest(){
         // TC01:

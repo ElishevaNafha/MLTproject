@@ -7,6 +7,7 @@ import primitives.Ray;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static primitives.Util.isZero;
@@ -24,7 +25,6 @@ public class Geometries extends Intersectable {
     private List<Intersectable> _geometries;
 
     //constructors
-
     /**
      * Geometries default constructor
      */
@@ -71,9 +71,15 @@ public class Geometries extends Intersectable {
         createVirtualBox();
     }
 
-    public void remove(Intersectable geometry){
-        _geometries.remove(geometry);
-        createVirtualBox();
+    /**
+     * removes a geometry from the geometries collection
+     * @param geometry geometry to remove
+     */
+    public void remove(Intersectable geometry) {
+        if (_geometries.contains(geometry)) {
+            _geometries.remove(geometry);
+            createVirtualBox();
+        }
     }
 
     //bounding values hierarchy functions
@@ -87,7 +93,6 @@ public class Geometries extends Intersectable {
         // get a list of intersected boxes
         Geometries intersectionBoxes = new Geometries(getIntersectionBoxesList(ray));
         // add all unboxed geometries (infinite geometries)
-        int len = intersectionBoxes._geometries.size();
         intersectionBoxes.add( _virtualBox.get_infiniteGeometries());
         return intersectionBoxes;
     }
@@ -114,8 +119,6 @@ public class Geometries extends Intersectable {
                 intersectionBoxes.addAll(((Geometries) _geometries.get(1)).getIntersectionBoxesList(ray));
             }
         }
-        if(intersectionBoxes.size()>8)
-            System.out.println("ytrgfrt");
         return intersectionBoxes;
     }
 
@@ -159,7 +162,7 @@ public class Geometries extends Intersectable {
         int differenceY = Math.abs(((Geometries)geometriesY.get(0))._geometries.size() - ((Geometries)geometriesY.get(1))._geometries.size());
         int differenceZ = Math.abs(((Geometries)geometriesZ.get(0))._geometries.size() - ((Geometries)geometriesZ.get(1))._geometries.size());
 
-        int min = Math.min(differenceX, differenceY);
+        double min = Math.min(differenceX, differenceY);
         min = Math.min(differenceZ, min);
         if (min == differenceX)
             Collections.addAll(_geometries, geometriesX.get(0), geometriesX.get(1));
@@ -203,14 +206,28 @@ public class Geometries extends Intersectable {
             }
         }
 
-        // in case the split created an empty box
+        // in case the split created an empty box, separate one geometry to another box.
+        // the geometry chosen is the one that fills the whole box in the chosen axis direction.
+        Intersectable toMove;
         if (left._geometries.isEmpty()) {
-            left.add(right._geometries.get(0));
-            right._geometries.remove(right._geometries.get(0));
+            if (axis == 'x')
+                toMove = right._geometries.stream().min(Comparator.comparingDouble(x -> x._virtualBox.get_lowX().get())).get();
+            else if (axis == 'y')
+                toMove = right._geometries.stream().min(Comparator.comparingDouble(x -> x._virtualBox.get_lowY().get())).get();
+            else
+                toMove = right._geometries.stream().min(Comparator.comparingDouble(x -> x._virtualBox.get_lowZ().get())).get();
+            left.add(toMove);
+            right.remove(toMove);
         }
-        if (right._geometries.isEmpty()) {
-            right.add(left._geometries.get(0));
-            left.remove(left._geometries.get(0));
+        else if (right._geometries.isEmpty()) {
+            if (axis == 'x')
+                toMove = left._geometries.stream().max(Comparator.comparingDouble(x -> x._virtualBox.get_highX().get())).get();
+            else if (axis == 'y')
+                toMove = left._geometries.stream().max(Comparator.comparingDouble(x -> x._virtualBox.get_highY().get())).get();
+            else
+                toMove = left._geometries.stream().max(Comparator.comparingDouble(x -> x._virtualBox.get_highZ().get())).get();
+            right.add(toMove);
+            left.remove(toMove);
         }
 
         List<Geometries> geometries = new ArrayList<>();
@@ -285,8 +302,11 @@ public class Geometries extends Intersectable {
         VirtualBox temp;
         boolean hasFinite = false;
         for (Intersectable geometry: _geometries) {
+            // if geometry is finite
             if(geometry.getVirtualBox()!=null){
+                // then box contains at least one geometry
                 hasFinite = true;
+                // change the box to fit the new geometry
                 temp = ((Intersectable) geometry).getVirtualBox();
                 virtualBox.addInfiniteGeometries(temp.get_infiniteGeometries());
                 if(temp.get_lowX().get()<virtualBox.get_lowX().get()){
@@ -308,6 +328,7 @@ public class Geometries extends Intersectable {
                     virtualBox.set_highZ(temp.get_highZ());
                 }
             }
+            // else, add geometry to the infinite geometries list
             else
                 virtualBox.addInfiniteGeometry((Geometry)geometry);
         }
